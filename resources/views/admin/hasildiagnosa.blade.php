@@ -9,7 +9,7 @@
         </div>
         <div class="d-flex justify-content-end">
 
-            <a href="{{ route('viewperkembangan') }}"><button class="btn btn-primary me-2 ">Perkembangan</button></a>
+            <a href=""><button class="btn btn-primary me-2 ">Perkembangan</button></a>
         </div>
     </div>
 </div>

@@ -18,6 +18,8 @@ class CreateDetailPerkembangansTable extends Migration
             $table->string('idperkembangan');
             $table->dateTime('tanggal');
             $table->string('panjang_badan');
+            $table->enum('status', ['masuk','tahap','keluar']);
+            $table->timestamps();
             $table->foreign('idperkembangan')->references('idperkembangan')->on('perkembangans');
         });
     }

@@ -17,47 +17,57 @@
                       Nama
                     </th>
                     <th>
-                      Status
+                      Jenis Kelamin
                     </th>
                     <th>
-                      No. Hp
+                      Tempat Lahir
+                    </th>
+                    <th>
+                      Tanggal Lahir
                     </th>
                     <th>
                       Posyandu
                     </th>
                     <th>
-                      aksi
+                      Status
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {{-- @json($user) --}}
-                  {{-- @foreach ($user as $item)
+                  @json($user)
+                  @foreach ($user as $item)
                       
                   <tr>
                     <td class="py-1">
                       {{ $item->nik }}
                     </td>
                     <td>
-                      {{ $item->name }}
+                      {{ $item->nama_balita }}
                     </td>
                     <td>
-                      {{ $item->status_users }}
+                      {{ $item->jenis_kelamin }}
 
                     </td>
                     <td>
-                      {{ $item->no_hp }}
+                      {{ $item->tempat_lahir }}
 
                     </td>
                     <td>
-                      {{ $item->posyandu->nama_posyandu }}
+                      {{ $item->tanggal_lahir }}
+
                     </td>
                     <td>
+                      {{ $item->posyandu }}
+                    </td>
+                    <td>
+                      {{ $item->perkembangan }}
+                    </td>
+                    {{-- <td>
                       <a href="{{ route('edit-user',$item->id_user) }}" class="btn btn-primary btn-rounded btn-fw">Edit</a>
                       <a href="{{ route('delete-user', $item->id_user) }}" class="btn btn-danger btn-rounded btn-fw">Delete</a>
-                    </td>
+                    </td> --}}
                   </tr>
-                  @endforeach --}}
+                  @endforeach 
                  
                 </tbody>
               </table>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\balita;
 use App\Models\posyandu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -24,7 +25,8 @@ class SuperAdminController extends Controller
     }
     public function databalita()
     {
-        return view('superadmin.databalita');
+        $user = balita::all();
+        return view('superadmin.databalita',compact('user'));
     }
     public function mengeloladataposyandu()
     {

@@ -10,7 +10,7 @@
               <h4 class="card-title">Tambah Posyandu</h4>
               <form method="POST"  action="{{ route('insert-posyandu') }}" >
                 @csrf
-                <div class="form-group">
+                {{-- <div class="form-group">
                   <label for="exampleInputEmail1">Id Posyandu</label>
                   <input type="text" class="form-control" id="idposyandu" name="idposyandu" placeholder="Id">
                   @error('idposyandu')
@@ -18,7 +18,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                </div>
+                </div> --}}
                 <div class="form-group">
                   <label for="exampleInputEmail1">Nama</label>
                   <input type="text" class="form-control" id="nama_posyandu" name="nama_posyandu" placeholder="Nama">
@@ -48,7 +48,7 @@
                 </div>
 
                 
-                <button type="submit" class="btn btn-primary me-2">Simpan</button>
+                <button type="submit" action="{{ route('mengeloladataposyandu') }}" class="btn btn-primary me-2">Simpan</button>
                 <button class="btn btn-light">Kembali</button>
               </form>
             </div>

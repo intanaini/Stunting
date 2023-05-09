@@ -12,7 +12,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nama</label>
-                    <input type="text" class="form-control" id="nama_posyandu" name="nama_posyandu" placeholder="Nama">
+                    <input value=" {{ $posyandu->nama_posyandu }}" type="text" class="form-control" id="nama_posyandu" name="nama_posyandu" placeholder="Nama">
                     @error('nama_posyandu')
                                       <span class="text-danger" >
                                           <strong>{{ $message }}</strong>
@@ -21,7 +21,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Alamat Posyandu</label>
-                    <input type="text" class="form-control" id="alamat_posyandu" name="alamat_posyandu" placeholder="password">
+                    <input value=" {{ $posyandu->alamat_posyandu }}" type="text" class="form-control" id="alamat_posyandu" name="alamat_posyandu" placeholder="password">
                     @error('alamat_posyandu')
                                       <span class="text-danger" >
                                           <strong>{{ $message }}</strong>
@@ -30,7 +30,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputConfirmPassword1">Jadwal Posyandu</label>
-                    <input type="text" class="form-control" id="jadwal_posyandu" name="jadwal_posyandu" placeholder="No.HP">
+                    <input value="{{ $posyandu->jadwal_posyandu }}" type="text" class="form-control" id="jadwal_posyandu" name="jadwal_posyandu" placeholder="No.HP">
                     @error('jadwal_posyandu')
                                       <span class="text-danger" >
                                           <strong>{{ $message }}</strong>
@@ -39,8 +39,8 @@
                   </div>
   
                 
-                <button type="submit" class="btn btn-primary me-2">Simpan</button>
-                <button class="btn btn-light">Kembali</button>
+                <a type="submit" href="{{ route('mengeloladataposyandu') }}" class="btn btn-primary me-2">Simpan</a>
+                <a href="{{ route('mengeloladataposyandu') }}" class="btn btn-light">Kembali</a>
               </form>
             </div>
           </div>

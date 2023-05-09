@@ -8,7 +8,7 @@
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Edit User</h4>
-              <form method="POST"  action="{{ route('update-user',$admin->id_user) }}" >
+              <form method="POST"  action="{{ route('updateS-user',$admin->id_user) }}" >
                 @csrf
                 <div class="form-group">
                   <label for="exampleInputUsername1">NIK</label>

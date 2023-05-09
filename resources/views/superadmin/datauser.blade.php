@@ -5,7 +5,7 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Tabel User</h4>
-            <a href="{{ route('tambah-user') }}" class="btn btn-primary btn-rounded btn-fw">Tambah Admin</a>
+            <a href="{{ route('tambahS-user') }}" class="btn btn-primary btn-rounded btn-fw">Tambah Admin</a>
             <div class="table-responsive">
               <table class="table table-striped">
                 <thead>
@@ -53,8 +53,8 @@
                       {{ $item->posyandu->nama_posyandu }}
                     </td>
                     <td>
-                      <a href="{{ route('edit-user',$item->id_user) }}" class="btn btn-primary btn-rounded btn-fw">Edit</a>
-                      <a href="{{ route('delete-user', $item->id_user) }}" class="btn btn-danger btn-rounded btn-fw">Delete</a>
+                      <a href="{{ route('editS-user',$item->id_user) }}" class="btn btn-primary btn-rounded btn-fw">Edit</a>
+                      <a href="{{ route('deleteS-user', $item->id_user) }}" class="btn btn-danger btn-rounded btn-fw">Delete</a>
                     </td>
                   </tr>
                   @endforeach

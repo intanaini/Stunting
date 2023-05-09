@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('Isi')
+@json($perkembangan->detail)
 <div class="row">
     <div class="col-sm-12">
       <div class="home-tab">

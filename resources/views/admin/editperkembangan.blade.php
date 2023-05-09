@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputUsername1">Panjang Badan</label>
-                  <input type="number" value="{{ $perkembangan->panjang_badan }}" class="form-control" id="panjang_badan" name="panjang_badan" placeholder="Panjang Badan>
+                  <input type="number" value="{{ $perkembangan->panjang_badan }}" class="form-control" id="panjang_badan" name="panjang_badan" placeholder="Panjang Badan">
                   @error('panjang_badan')
                                     <span class="text-danger" >
                                         <strong>{{ $message }}</strong>

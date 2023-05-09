@@ -11,6 +11,19 @@
               <form method="POST"  action="{{ route('update-balita',$balita->idbalita) }}" >
                 @csrf
                 <div class="form-group">
+
+                  <label for="exampleInputPassword1">Orang tua</label>
+                  <select class="js-example-basic-single w-100" id="orang_tua" name="orang_tua">
+                    @foreach ($ortu as $item)
+                    <option value="{{ $item->id_user }}">{{ $item->name }}</option>
+                    @endforeach
+                  </select>
+                  @error('orang_tua')
+                  <span class="text-danger" >
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">NIK</label>
                     <input type="number" class="form-control" id="nik" name="nik" placeholder="NIK">
@@ -29,6 +42,8 @@
                                       </span>
                                   @enderror
                   </div>
+                  
+                  <div class="form-group">
               <label for="exampleInputPassword1">Jenis Kelamin</label>
               <select class="js-example-basic-single w-100" id="jenis_kelamin" name="jenis_kelamin">
                 <option value="laki-laki">Laki-Laki</option>

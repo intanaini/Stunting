@@ -11,9 +11,6 @@
                 <thead>
                   <tr>
                     <th>
-                      Id Posyandu
-                    </th>
-                    <th>
                       Nama 
                     </th>
                     <th>
@@ -32,9 +29,6 @@
                   @foreach ($posyandu as $item)
                       
                   <tr>
-                    <td class="py-1">
-                      {{ $item->idposyandu }}
-                    </td>
                     <td>
                       {{ $item->nama_posyandu }}
                     </td>
