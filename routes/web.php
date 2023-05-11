@@ -75,7 +75,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'hakakses:admin']], func
     Route::get('/datadiagnosa', [App\Http\Controllers\AdminController::class, 'datadiagnosa'])->name('datadiagnosa');
     Route::any('/tambahdiagnosa', [App\Http\Controllers\AdminController::class, 'tambahDiagnosa'])->name('tambahDiagnosa');
 
-    Route::get('/hasildiagnosa', [AdminController::class, 'hasildiagnosa'])->name('hasildiagnosa');
+    Route::get('/hasildiagnosa/{id}/{umur}/{panjang}', [AdminController::class, 'hasildiagnosa'])->name('hasildiagnosa');
+    Route::get('/hasil-diagnosa/{umur}/{panjang}', [AdminController::class, 'hasildiagnosaS'])->name('hasil-diagnosa');
     // posyandu
     Route::get('/dataposyandu', [App\Http\Controllers\AdminController::class, 'dataposyandu'])->name('dataposyandu');
     // posyandu
@@ -121,3 +122,13 @@ Route::group(['prefix'=>'pengguna', 'middleware'=>['auth', 'hakakses:pengguna']]
     Route::get('/informasi', [App\Http\Controllers\PenggunaController::class, 'informasi'])->name('informasi');
 });
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/hasilS', function () {
+//     return view('admin.hasildiagnosaS');
+// });
+// Route::get('/hasilTS', function () {
+//     return view('admin.hasildiagnosaTS');
+// });
+// Route::get('/hasilUL', function () {
+//     return view('admin.hasildiagnosaUL');
+
+// });

@@ -15,9 +15,10 @@ class CreateDiagnosasTable extends Migration
     {
         Schema::create('diagnosas', function (Blueprint $table) {
             $table->string('idDiagnosa')->primary();
-            $table->string('idaturan');
-            $table->string('idbalita');
-            $table->string('hasil_diagnosa');
+            $table->string('idaturan')->nullable();
+            $table->string('idbalita')->nullable();
+            $table->dateTime('tanggal')->nullable();
+            $table->string('hasil_diagnosa')->nullable();
             $table->foreign('idaturan')->references('idaturan')->on('aturans');
             $table->foreign('idbalita')->references('idbalita')->on('balitas');
             $table->timestamps();

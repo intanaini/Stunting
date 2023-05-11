@@ -36,9 +36,9 @@
                                       </span>
                                   @enderror
                   </div>
-                <button type="submit" class="btn btn-primary me-2">Diagnosa</button>
-                  <button class="btn btn-light">Kembali</button>
-                </form>
+                <button  type="submit" class="btn btn-primary me-2">Diagnosa</button>
+              </form>
+              <a href="{{ url()->previous() }}" class="btn btn-light">Kembali</a>
               </table>
             </div>
           </div>
