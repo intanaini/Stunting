@@ -24,4 +24,9 @@ class perkembangan extends Model
     //  idposyandu pertama dari penamaan database disini, idposyandu setelah koma dari database asli posyandu
      return $this->belongsTo(balita::class,'idbalita','idbalita');
     }
+    public function detail()
+    {
+    //  idposyandu pertama dari penamaan database disini, idposyandu setelah koma dari database asli posyandu
+     return $this->hasmany(detail_perkembangan::class,'idperkembangan','idperkembangan');
+    }
 }

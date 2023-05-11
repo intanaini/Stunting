@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\balita;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -25,7 +26,8 @@ class PenggunaController extends Controller
     public function tambahdatabalita()
     {
         $balita = balita::all();
-        return view('pengguna.tambahbalita',compact(['balita']));
+        $ortu = User::where('role','pengguna')->get();
+        return view('pengguna.tambahbalita',compact(['balita','ortu']));
     }
     public function insertdatabalita(Request $request)
     {
@@ -34,13 +36,15 @@ class PenggunaController extends Controller
            'nama_balita' => 'required', 
            'jenis_kelamin' => 'required', 
            'tempat_lahir' => 'required|min:8',
-           'tanggal_lahir' => 'required'
+           'tanggal_lahir' => 'required',
+           'orang_tua'=> 'required'
         ]);
-        $ids = $request->role.'-'. Str::random(8);
+        $ids = 'balita-'. Str::random(8);
         // $request->merge(['password' => Hash::make($request->input('password'))]);
        $balita = balita::create([
         'idbalita'=>$ids,
         'nik'     => $request->nik,
+        'idortu'=> $request->orang_tua,
         'nama_balita'   => $request->nama_balita,
         'jenis_kelamin'=> $request->jenis_kelamin,
         'tempat_lahir'   => $request->tempat_lahir,
@@ -56,21 +60,33 @@ class PenggunaController extends Controller
     public function editdatabalita($idbalita)
     {
         $balita = balita::where('idbalita',$idbalita)->first();
-        return view('pengguna.editbalita', compact(['balita']));
+        $ortu = User::where('role','pengguna')->get();
+        return view('pengguna.editbalita', compact(['balita','ortu']));
     }
 
     public function updatebalita(Request $request, $id)
     {
+        $this->validate($request, [
+            'nik' => 'required',
+            'nama_balita' => 'required', 
+            'jenis_kelamin' => 'required', 
+            'tempat_lahir' => 'required|min:8',
+            'tanggal_lahir' => 'required',
+            'orang_tua'=> 'required'
+         ]);
+
         $data = [
-            'idbalita'=>$id,
+            // 'idbalita'=>$id,
             'nik'     => $request->nik,
             'nama_balita'   => $request->nama_balita,
+            'idortu'=> $request->orang_tua,
             'jenis_kelamin'=> $request->jenis_kelamin,
             'tempat_lahir'   => $request->tempat_lahir,
             'tanggal_lahir'   => $request->tanggal_lahir
         ];
 
         $updateData= balita::where('idbalita', $request->id)->update($data);
+        
 
         if($updateData){
             return redirect()->route('databalita')->with('success', 'Data berhasil di ubah');

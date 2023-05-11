@@ -16,10 +16,12 @@ class CreateBalitasTable extends Migration
         Schema::create('balitas', function (Blueprint $table) {
             $table->string('idbalita')->primary();
             $table->string('nik')->unique();
+            $table->string('idortu');
             $table->string('nama_balita');
             $table->string('jenis_kelamin');
             $table->string('tempat_lahir');
             $table->dateTime('tanggal_lahir');
+            $table->foreign('idortu')->references('id_user')->on('users');
             $table->timestamps();
         });
     }

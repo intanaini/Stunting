@@ -5,7 +5,7 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Perkembangan</h4>
-            <a href="{{ route('tambah-perkembangan') }}" class="btn btn-primary btn-rounded btn-fw">Tambah Admin</a>
+            {{-- <a href="{{ route('tambah-perkembangan') }}" class="btn btn-primary btn-rounded btn-fw">Tambah Admin</a> --}}
             <div class="table-responsive">
               <table class="table table-striped">
                 <thead>
@@ -47,8 +47,8 @@
                     </td>
                     <td class="text-center">
                       <a href="{{ route('edit-perkembangan',$item->idperkembangan) }}" class="btn btn-primary btn-rounded btn-fw"  >Edit</a>
-                      <a href="{{ route('delete-perkembangan', $item->idperkembangan) }}" class="btn btn-danger btn-rounded btn-fw">Delete</a>
-                      <a href="{{ route('viewperkembangan') }}" type="button" class="btn btn-primary btn-rounded btn-icon">
+                      {{-- <a href="{{ route('delete-perkembangan', $item->idperkembangan) }}" class="btn btn-danger btn-rounded btn-fw">Delete</a> --}}
+                      <a href="{{ route('viewperkembangan',$item->idperkembangan) }}" type="button" class="btn btn-primary btn-rounded btn-icon">
                         <i class="mdi mdi-eye"></i>
                       </a>
                     </td>

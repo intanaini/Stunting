@@ -50,15 +50,15 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'hakakses:admin']], func
     // penyakit
     Route::get('/datapenyakit', [App\Http\Controllers\AdminController::class, 'datapenyakit'])->name('datapenyakit');
     // metode
-    Route::get('/datametode', [App\Http\Controllers\AdminController::class, 'datametode'])->name('datametode');
-    Route::get('/tambahmetode',[AdminController::class,'tambahdatametode'])->name('tambah-metode');
-    Route::post('/insertmetode',[AdminController::class,'insertdatametode'])->name('insert-metode');
-    Route::get('/editmetode/{id}',[AdminController::class,'editdatametode'])->name('edit-metode');
-    Route::post('/ubahmetode/{id}', [AdminController::class, 'updatemetode'])-> name('update-metode');
-    Route::get('/deletemetode/{id}',[AdminController::class,'deletedatametode'])->name('delete-metode');
+    Route::get('/datainformasi', [App\Http\Controllers\AdminController::class, 'datainformasi'])->name('datainformasi');
+    Route::get('/tambahinformasi',[AdminController::class,'tambahdatainformasi'])->name('tambah-informasi');
+    Route::post('/insertinformasi',[AdminController::class,'insertdatainformasi'])->name('insert-informasi');
+    Route::get('/editinformasi/{id}',[AdminController::class,'editdatainformasi'])->name('edit-informasi');
+    Route::post('/ubahinformasi/{id}', [AdminController::class, 'updateinformasi'])-> name('update-informasi');
+    Route::get('/deleteinformasi/{id}',[AdminController::class,'deletedatainformasi'])->name('delete-informasi');
     // perkembangan
     Route::get('/dataperkembangan', [App\Http\Controllers\AdminController::class, 'dataperkembangan'])->name('dataperkembangan');
-    Route::get('/viewperkembangan', [App\Http\Controllers\AdminController::class, 'viewperkembangan'])->name('viewperkembangan');
+    Route::get('/viewperkembangan/{id}', [App\Http\Controllers\AdminController::class, 'viewperkembangan'])->name('viewperkembangan');
     Route::get('/tambahperkembangan',[AdminController::class,'tambahdataperkembangan'])->name('tambah-perkembangan');
     Route::post('/insertperkembangan',[AdminController::class,'insertdataperkembangan'])->name('insert-perkembangan');
     Route::get('/editperkembangan/{id}',[AdminController::class,'editdataperkembangan'])->name('edit-perkembangan');
@@ -73,7 +73,10 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'hakakses:admin']], func
     Route::get('/deletebalita/{id}',[PenggunaController::class,'deletedatabalita'])->name('delete-balita');
     // diagnosa
     Route::get('/datadiagnosa', [App\Http\Controllers\AdminController::class, 'datadiagnosa'])->name('datadiagnosa');
-    Route::get('/hasildiagnosa', [AdminController::class, 'hasildiagnosa'])->name('hasildiagnosa');
+    Route::any('/tambahdiagnosa', [App\Http\Controllers\AdminController::class, 'tambahDiagnosa'])->name('tambahDiagnosa');
+
+    Route::get('/hasildiagnosa/{id}/{umur}/{panjang}', [AdminController::class, 'hasildiagnosa'])->name('hasildiagnosa');
+    Route::get('/hasil-diagnosa/{umur}/{panjang}', [AdminController::class, 'hasildiagnosaS'])->name('hasil-diagnosa');
     // posyandu
     Route::get('/dataposyandu', [App\Http\Controllers\AdminController::class, 'dataposyandu'])->name('dataposyandu');
     // posyandu
@@ -90,11 +93,11 @@ Route::group(['prefix'=>'super', 'middleware'=>['auth', 'hakakses:superadmin']],
     // Route::get('/dataadmin', [App\Http\Controllers\SuperAdminController::class, 'dataadmin'])->name('dataSadmin');
     Route::get('/datasadmin', [App\Http\Controllers\AdminController::class, 'datasadmin'])->name('dataSadmin');
     Route::get('/datasuser', [App\Http\Controllers\AdminController::class, 'dataSuser'])->name('dataSuser');
-    Route::get('/tambahuser',[AdminController::class,'tambahdatauser'])->name('tambah-user');
-    Route::post('/insertuser',[AdminController::class,'insertdatauser'])->name('insert-user');
-    Route::get('/edituser/{id}',[AdminController::class,'editdatauser'])->name('edit-user');
-    Route::post('/ubahuser/{id}', [AdminController::class, 'updateuser'])-> name('update-user');
-    Route::get('/deleteuser/{id}',[AdminController::class,'deletedatauser'])->name('delete-user');
+    Route::get('/tambahuser',[AdminController::class,'tambahdataSuser'])->name('tambahS-user');
+    Route::post('/insertuser',[AdminController::class,'insertdataSuser'])->name('insertS-user');
+    Route::get('/edituser/{id}',[AdminController::class,'editdataSuser'])->name('editS-user');
+    Route::post('/ubahuser/{id}', [AdminController::class, 'updateSuser'])-> name('updateS-user');
+    Route::get('/deleteuser/{id}',[AdminController::class,'deletedataSuser'])->name('deleteS-user');
     Route::get('/databalita', [App\Http\Controllers\SuperAdminController::class, 'databalita'])->name('dataSbalita');
     Route::get('/mengeloladataposyandu', [App\Http\Controllers\SuperAdminController::class, 'mengeloladataposyandu'])->name('mengeloladataposyandu');
     Route::get('/tambahposyandu',[SuperAdminController::class,'tambahdataposyandu'])->name('tambah-posyandu');
@@ -119,3 +122,13 @@ Route::group(['prefix'=>'pengguna', 'middleware'=>['auth', 'hakakses:pengguna']]
     Route::get('/informasi', [App\Http\Controllers\PenggunaController::class, 'informasi'])->name('informasi');
 });
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/hasilS', function () {
+//     return view('admin.hasildiagnosaS');
+// });
+// Route::get('/hasilTS', function () {
+//     return view('admin.hasildiagnosaTS');
+// });
+// Route::get('/hasilUL', function () {
+//     return view('admin.hasildiagnosaUL');
+
+// });

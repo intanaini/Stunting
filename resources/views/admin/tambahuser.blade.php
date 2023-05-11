@@ -40,9 +40,6 @@
                 <div class="form-group">
                   <label for="exampleInputPassword1">Role</label>
                   <select class="js-example-basic-single w-100" id="role" name="role">
-                    <option value="admin">admin</option>
-                    <option value="superadmin">superadmin</option>
-                    <option value="pakar">pakar</option>
                     <option value="pengguna">pengguna</option>
                   </select>
                   @error('role')

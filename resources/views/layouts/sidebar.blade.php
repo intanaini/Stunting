@@ -20,7 +20,7 @@
         <div class="collapse" id="dataadmin">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ route('dataadmin') }}">Data Admin</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ route('datauser') }}">Data user</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('datauser') }}">Data Pengguna</a></li>
             {{-- <li class="nav-item"> <a class="nav-link" href="{{ route('databalita') }}">Data Balita</a></li> --}}
           </ul>
         </div>
@@ -39,9 +39,9 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('datametode') }}">
-          <i class="mdi mdi-settings menu-icon"></i>
-          <span class="menu-title">Aturan Metode</span>
+        <a class="nav-link" href="{{ route('datainformasi') }}">
+          <i class="mdi mdi-alert menu-icon"></i>
+          <span class="menu-title">Aturan Informasi</span>
         </a>
       </li>
       <li class="nav-item">
@@ -102,7 +102,7 @@
         <div class="collapse" id="ui-basic">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ route('dataSadmin') }}">Data Admin</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ route('dataSuser') }}">Data User</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('dataSuser') }}">Data Pengguna</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ route('dataSbalita') }}">Data Balita</a></li>
           </ul>
         </div>

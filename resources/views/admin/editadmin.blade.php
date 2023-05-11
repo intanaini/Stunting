@@ -43,7 +43,6 @@
                     <option {{ $admin->role == 'admin' ? 'selected' : '' }}  value="admin">admin</option>
                     <option {{ $admin->role == 'superadmin' ? 'selected' : '' }}  value="superadmin">superadmin</option>
                     <option {{ $admin->role == 'pakar' ? 'selected' : '' }}  value="pakar">pakar</option>
-                    <option {{ $admin->role == 'penguna' ? 'selected'  : '' }}  value="pengguna">pengguna</option>
                   </select>
                   @error('role')
                                     <span class="text-danger" >

@@ -18,7 +18,7 @@ class CreatePerkembangansTable extends Migration
             $table->string('idbalita');
             $table->string('panjang_badan');
             $table->string('umur');
-            $table->enum('status', ['masuk','tahap','kelaur']);
+            $table->enum('status', ['masuk','tahap','keluar']);
             $table->foreign('idbalita')->references('idbalita')->on('balitas');
             $table->timestamps();
         });

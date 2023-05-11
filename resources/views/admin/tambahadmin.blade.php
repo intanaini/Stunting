@@ -43,7 +43,6 @@
                     <option value="admin">admin</option>
                     <option value="superadmin">superadmin</option>
                     <option value="pakar">pakar</option>
-                    <option value="pengguna">pengguna</option>
                   </select>
                   @error('role')
                                     <span class="text-danger" >

@@ -14,7 +14,8 @@ class balita extends Model
         'nama_balita',
         'jenis_kelamin',
         'tempat_lahir',
-        'tanggal_lahir'
+        'tanggal_lahir',
+        'idortu'
     ];
     protected $primaryKey = 'idbalita';
     protected $dates = ['tanggal_lahir'];
