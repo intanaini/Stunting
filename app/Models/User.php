@@ -39,7 +39,9 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-
+    protected $keyType = 'string';
+ 
+    public $incrementing = false;
     /**
      * The attributes that should be cast.
      *
@@ -54,5 +56,10 @@ class User extends Authenticatable
     {
     //  idposyandu pertama dari penamaan database disini, idposyandu setelah koma dari database asli posyandu
      return $this->belongsTo(posyandu::class,'idposyandu','idposyandu');
+    }
+
+    public function balita( )
+    {
+        return $this->hasMany(balita::class,'idortu');
     }
 }

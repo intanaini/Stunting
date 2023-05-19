@@ -86,8 +86,8 @@
                 </div> --}}
                 
                 <button type="submit" class="btn btn-primary me-2">Simpan</button>
+                <a href="{{ url()->previous() }}" class="btn btn-light">Kembali</a>
               </form>
-              <a href="{{ url()->previous() }}" class="btn btn-light">Kembali</a>
             </div>
           </div>
         </div>

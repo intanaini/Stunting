@@ -40,7 +40,7 @@
   
                 
                 <a type="submit" href="{{ route('mengeloladataposyandu') }}" class="btn btn-primary me-2">Simpan</a>
-                <a href="{{ route('mengeloladataposyandu') }}" class="btn btn-light">Kembali</a>
+                <a href="{{ url()->previous() }}" class="btn btn-light">Kembali</a>
               </form>
             </div>
           </div>

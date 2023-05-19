@@ -12,15 +12,15 @@
             <div class="col-sm-12">
               <div class="home-tab">
                     <div class="row">
-                      <div class="col-lg-8 d-flex flex-column">
+                      <div class="col-lg-12 d-flex flex-column">
                         <div class="row flex-grow">
                           <div class="col-12 col-lg-4 col-lg-12 grid-margin stretch-card">
                             <div class="card card-rounded">
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                   <div>
-                                   <h4 class="card-title card-title-dash">Performance Line Chart</h4>
-                                   <h5 class="card-subtitle card-subtitle-dash">Lorem Ipsum is simply dummy text of the printing</h5>
+                                   <h4 class="card-title card-title-dash">Data Balita Stunting Tahun {{ date('Y') }} di {{ Auth::user()->posyandu->nama_posyandu }}</h4>
+                                   {{-- <h5 class="card-subtitle card-subtitle-dash">Lorem Ipsum is simply dummy text of the printing</h5> --}}
                                   </div>
                                   <div id="performance-line-legend"></div>
                                 </div>
@@ -32,6 +32,9 @@
                           </div>
                         </div>
                       </div>
+                      
+                    </div>
+                    <div class="row">
                       <div class="col-lg-4 d-flex flex-column">
                         <div class="row flex-grow">
                             <div class="col-12 grid-margin stretch-card">
@@ -40,7 +43,7 @@
                                   <div class="row">
                                     <div class="col-lg-12">
                                       <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <h4 class="card-title card-title-dash">Type By Amount</h4>
+                                        <h4 class="card-title card-title-dash">Total Data Stunting Di {{ Auth::user()->posyandu->nama_posyandu }}</h4>
                                       </div>
                                       <canvas class="my-auto" id="doughnutChart" height="200"></canvas>
                                       <div id="doughnut-chart-legend" class="mt-5 text-center"></div>
@@ -51,9 +54,7 @@
                             </div>
                       </div>                      
                     </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-lg-12 d-flex flex-column">
+                      <div class="col-lg-8 d-flex flex-column">
                         <div class="row flex-grow">
                           <div class="col-12 grid-margin stretch-card">
                             <div class="card card-rounded">
@@ -197,10 +198,10 @@
       saleGradientBg2.addColorStop(0, 'rgba(0, 208, 255, 0.19)');
       saleGradientBg2.addColorStop(1, 'rgba(0, 208, 255, 0.03)');
       var salesTopData = {
-          labels: ["SUN","sun", "MON", "mon", "TUE","tue", "WED", "wed", "THU", "thu", "FRI", "fri", "SAT"],
+          labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
           datasets: [{
-              label: 'This week',
-              data: [50, 110, 60, 290, 200, 115, 130, 170, 90, 210, 240, 280, 200],
+              label: 'Balita Stunting',
+              data: @json($dataStunting),
               backgroundColor: saleGradientBg,
               borderColor: [
                   '#1F3BB3',
@@ -210,11 +211,11 @@
               pointBorderWidth: 1,
               pointRadius: [4, 4, 4, 4, 4,4, 4, 4, 4, 4,4, 4, 4],
               pointHoverRadius: [2, 2, 2, 2, 2,2, 2, 2, 2, 2,2, 2, 2],
-              pointBackgroundColor: ['#1F3BB3)', '#1F3BB3', '#1F3BB3', '#1F3BB3','#1F3BB3)', '#1F3BB3', '#1F3BB3', '#1F3BB3','#1F3BB3)', '#1F3BB3', '#1F3BB3', '#1F3BB3','#1F3BB3)'],
+              pointBackgroundColor: ['#1F3BB3', '#1F3BB3', '#1F3BB3', '#1F3BB3','#1F3BB3', '#1F3BB3', '#1F3BB3', '#1F3BB3','#1F3BB3', '#1F3BB3', '#1F3BB3', '#1F3BB3','#1F3BB3'],
               pointBorderColor: ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff',],
           },{
-            label: 'Last week',
-            data: [30, 150, 190, 250, 120, 150, 130, 20, 30, 15, 40, 95, 180],
+            label: 'Balita Tidak Stunting',
+            data: @json($dataTDKStunting),
             backgroundColor: saleGradientBg2,
             borderColor: [
                 '#52CDFF',
@@ -222,9 +223,9 @@
             borderWidth: 1.5,
             fill: true, // 3: no fill
             pointBorderWidth: 1,
-            pointRadius: [0, 0, 0, 4, 0],
-            pointHoverRadius: [0, 0, 0, 2, 0],
-            pointBackgroundColor: ['#52CDFF)', '#52CDFF', '#52CDFF', '#52CDFF','#52CDFF)', '#52CDFF', '#52CDFF', '#52CDFF','#52CDFF)', '#52CDFF', '#52CDFF', '#52CDFF','#52CDFF)'],
+            pointRadius: [4, 4, 4, 4, 4,4, 4, 4, 4, 4,4, 4, 4],
+              pointHoverRadius: [2, 2, 2, 2, 2,2, 2, 2, 2, 2,2, 2, 2],
+            pointBackgroundColor: ['#52CDFF', '#52CDFF', '#52CDFF', '#52CDFF','#52CDFF', '#52CDFF', '#52CDFF', '#52CDFF','#52CDFF', '#52CDFF', '#52CDFF', '#52CDFF','#52CDFF'],
               pointBorderColor: ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff',],
         }]
       };
@@ -255,7 +256,7 @@
                 },
                 ticks: {
                   beginAtZero: false,
-                  autoSkip: true,
+                  autoSkip: false,
                   maxTicksLimit: 7,
                   fontSize: 10,
                   color:"#6B778C"
@@ -300,27 +301,27 @@
       var doughnutChartCanvas = $("#doughnutChart").get(0).getContext("2d");
       var doughnutPieData = {
         datasets: [{
-          data: [40, 20, 30, 10],
+          data: @json($totaldata),
           backgroundColor: [
             "#1F3BB3",
             "#FDD0C7",
-            "#52CDFF",
-            "#81DADA"
+            // "#52CDFF",
+            // "#81DADA"
           ],
           borderColor: [
             "#1F3BB3",
             "#FDD0C7",
-            "#52CDFF",
-            "#81DADA"
+            // "#52CDFF",
+            // "#81DADA"
           ],
         }],
   
         // These labels appear in the legend and in the tooltips when hovering different arcs
         labels: [
-          'Total',
-          'Net',
-          'Gross',
-          'AVG',
+          'Stunting',
+          'Tidak Stunting',
+          // 'Gross',
+          // 'AVG',
         ]
       };
       var doughnutPieOptions = {

@@ -10,11 +10,13 @@ class informasi extends Model
     use HasFactory;
     protected $fillable=[
         'idinformasi',
-        'keterangan',
+        'judul',
         'deskripsi',
+        'gambar',
     ];
     protected $primaryKey = 'idinformasi';
-
+    protected $keyType = 'string';
+    public $incrementing = false;
     protected $casts = [
         'idinformasi'=> 'string',
     ];

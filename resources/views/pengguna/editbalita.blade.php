@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">NIK</label>
-                    <input type="number" class="form-control" id="nik" name="nik" placeholder="NIK">
+                    <input  value="{{ $balita->nik }}" type="number" class="form-control" id="nik" name="nik" placeholder="NIK">
                     @error('nik')
                                       <span class="text-danger" >
                                           <strong>{{ $message }}</strong>
@@ -35,7 +35,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Nama</label>
-                    <input type="text" class="form-control" id="nama_balita" name="nama_balita" placeholder="Nama">
+                    <input  value="{{ $balita->nama_balita }}" type="text" class="form-control" id="nama_balita" name="nama_balita" placeholder="Nama">
                     @error('nama_balita')
                                       <span class="text-danger" >
                                           <strong>{{ $message }}</strong>
@@ -45,9 +45,9 @@
                   
                   <div class="form-group">
               <label for="exampleInputPassword1">Jenis Kelamin</label>
-              <select class="js-example-basic-single w-100" id="jenis_kelamin" name="jenis_kelamin">
-                <option value="laki-laki">Laki-Laki</option>
-                <option value="perempuan">Perempuan</option>
+              <select  class="js-example-basic-single w-100" id="jenis_kelamin" name="jenis_kelamin">
+                <option {{ $balita->jenis_kelamin == 'laki-laki' ? 'selected' : '' }} value="laki-laki">Laki-Laki</option>
+                <option {{ $balita->jenis_kelamin == 'perempuan' ? 'selected' : '' }} value="perempuan">Perempuan</option>
               </select>
               @error('jenis_kelamin')
                                 <span class="text-danger" >
@@ -58,7 +58,7 @@
            
             <div class="form-group">
               <label for="exampleInputEmail1">Tempat Lahir</label>
-              <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="Tempat Lahir">
+              <input  value="{{ $balita->tempat_lahir }}" type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="Tempat Lahir">
               @error('tempat_badan')
                                 <span class="text-danger" >
                                     <strong>{{ $message }}</strong>
@@ -66,8 +66,8 @@
                             @enderror
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Tanggal Lahir</label>
-                <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="Tanggal Lahir">
+                <label for="exampleInputEmail1">Tanggal Lahir </label>
+                <input value="{{ $balita->tanggal_lahir->format('Y-m-d') }}" type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="Tanggal Lahir">
                 @error('tanggal_lahiran')
                                   <span class="text-danger" >
                                       <strong>{{ $message }}</strong>

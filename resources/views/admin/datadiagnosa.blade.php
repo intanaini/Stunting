@@ -23,8 +23,8 @@
                   </div>
                   
                   <div class="form-group">
-                    <label for="exampleInputConfirmPassword1">Panjang Badan</label>
-                    <input type="number" class="form-control" id="panjang" name="panjang" placeholder="Panjang Badan">
+                    <label for="exampleInputConfirmPassword1">Panjang Badan (CM) </label>
+                    <input type="number" class="form-control" id="panjang" name="panjang" placeholder="Panjang Badan" min="1" max="100">
                       {{-- @foreach ($posyandu as $item)
                           
                       <option value="{{ $item->idposyandu }}">{{ $item->nama_posyandu }}</option>

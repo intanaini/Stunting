@@ -13,15 +13,44 @@ use App\Models\User;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        $data = User::all();
-        return view('admin.admin', compact('data'));
+        $data = User::where('idposyandu',Auth::user()->idposyandu)->pluck('id_user')->toArray();
+        // dd($data);
+        $balita =balita::whereIn('idortu',$data)->pluck('idbalita')->toArray();
+        // dd($balita);        // $ortu = 
+
+        $dataStunting = [];
+        $dataTDKStunting = [];
+        $bulan = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+        foreach ($bulan as $key) {
+            $diagnosa = diagnosa::whereIn('idbalita',$balita)->where('hasil_diagnosa', 'stunting')->whereMonth('created_at', $key)->whereYear('created_at', date('Y'))->get();
+            array_push($dataStunting, ($diagnosa->count() ?? 0));
+        }
+        foreach ($bulan as $key) {
+            $diagnosa = diagnosa::whereIn('idbalita',$balita)->where('hasil_diagnosa', 'tidak stunting')->whereMonth('created_at', $key)->whereYear('created_at', date('Y'))->get();
+            array_push($dataTDKStunting, ($diagnosa->count() ?? 0));
+        }
+
+        // ==========================================================
+
+
+        $totaldata =[];
+        $ts=diagnosa::whereIn('idbalita',$balita)->where('hasil_diagnosa', 'stunting')->get();
+        $tts=diagnosa::whereIn('idbalita',$balita)->where('hasil_diagnosa', 'tidak stunting')->get();
+        array_push($totaldata,$ts->count() ?? 0);
+        array_push($totaldata,$tts->count() ?? 0);
+        // dd($dataStunting);
+
+        return view('admin.admin', compact(['data', 'dataStunting','dataTDKStunting','totaldata']));
     }
     // admin
     public function dataadmin()
@@ -78,16 +107,30 @@ class AdminController extends Controller
 
     public function updateadmin(Request $request, $id)
     {
-        $data = [
-            'id_user' => $id,
-            'nik'     => $request->nik,
-            'name'   => $request->name,
-            'role' => $request->role,
-            'password'   => $request->password,
-            'status_users'   => $request->status_users,
-            'no_hp'   => $request->no_hp,
-            'idposyandu'   => $request->id_posyandu
-        ];
+        if ($request->password) {
+            $data = [
+                'id_user' => $id,
+                'nik'     => $request->nik,
+                'name'   => $request->name,
+                'role' => $request->role,
+                'password'   => $request->password,
+                'status_users'   => $request->status_users,
+                'no_hp'   => $request->no_hp,
+                'idposyandu'   => $request->id_posyandu
+            ];
+        } else {
+
+            $data = [
+                'id_user' => $id,
+                'nik'     => $request->nik,
+                'name'   => $request->name,
+                'role' => $request->role,
+                // 'password'   => $request->password,
+                'status_users'   => $request->status_users,
+                'no_hp'   => $request->no_hp,
+                'idposyandu'   => $request->id_posyandu
+            ];
+        }
 
         $updateData = User::where('id_user', $request->id)->update($data);
 
@@ -196,16 +239,30 @@ class AdminController extends Controller
 
     public function updateuser(Request $request, $id)
     {
-        $data = [
-            'id_user' => $id,
-            'nik'     => $request->nik,
-            'name'   => $request->name,
-            'role' => $request->role,
-            'password'   => $request->password,
-            'status_users'   => $request->status_users,
-            'no_hp'   => $request->no_hp,
-            'idposyandu'   => $request->id_posyandu
-        ];
+        if ($request->password) {
+            $data = [
+                'id_user' => $id,
+                'nik'     => $request->nik,
+                'name'   => $request->name,
+                'role' => $request->role,
+                'password'   => $request->password,
+                'status_users'   => $request->status_users,
+                'no_hp'   => $request->no_hp,
+                'idposyandu'   => $request->id_posyandu
+            ];
+        } else {
+            $data = [
+                'id_user' => $id,
+                'nik'     => $request->nik,
+                'name'   => $request->name,
+                'role' => $request->role,
+                // 'password'   => $request->password,
+                'status_users'   => $request->status_users,
+                'no_hp'   => $request->no_hp,
+                'idposyandu'   => $request->id_posyandu
+            ];
+        }
+
 
         $updateData = User::where('id_user', $request->id)->update($data);
 
@@ -225,16 +282,29 @@ class AdminController extends Controller
 
     public function updateSuser(Request $request, $id)
     {
-        $data = [
-            'id_user' => $id,
-            'nik'     => $request->nik,
-            'name'   => $request->name,
-            'role' => $request->role,
-            'password'   => $request->password,
-            'status_users'   => $request->status_users,
-            'no_hp'   => $request->no_hp,
-            'idposyandu'   => $request->id_posyandu
-        ];
+        if ($request->password) {
+            $data = [
+                'id_user' => $id,
+                'nik'     => $request->nik,
+                'name'   => $request->name,
+                'role' => $request->role,
+                'password'   => $request->password,
+                'status_users'   => $request->status_users,
+                'no_hp'   => $request->no_hp,
+                'idposyandu'   => $request->id_posyandu
+            ];
+        } else {
+            $data = [
+                'id_user' => $id,
+                'nik'     => $request->nik,
+                'name'   => $request->name,
+                'role' => $request->role,
+                // 'password'   => $request->password,
+                'status_users'   => $request->status_users,
+                'no_hp'   => $request->no_hp,
+                'idposyandu'   => $request->id_posyandu
+            ];
+        }
 
         $updateData = User::where('id_user', $request->id)->update($data);
 
@@ -357,15 +427,19 @@ class AdminController extends Controller
     public function insertdatainformasi(Request $request)
     {
         $this->validate($request, [
-            'keterangan' => 'required',
+            'judul' => 'required',
             'deskripsi' => 'required',
+            'gambar' => 'required',
         ]);
-        $ids = $request->role . '-' . Str::random(8);
-        // $request->merge(['password' => Hash::make($request->input('password'))]);
+        $imageName = time() . '.' . $request->gambar->extension();
+        $request->gambar->move(public_path('images'), $imageName);
+        $ids =  'informasi' . '-' . Str::random(8);
+
         $informasi = informasi::create([
             'idinformasi' => $ids,
-            'keterangan'   => $request->keterangan,
-            'deskripsi' => $request->deskripsi
+            'judul'   => $request->judul,
+            'deskripsi' => $request->deskripsi,
+            'gambar' => $imageName
         ]);
 
         if ($informasi) {
@@ -383,13 +457,36 @@ class AdminController extends Controller
 
     public function updateinformasi(Request $request, $id)
     {
+
         $data = [
-            'idinformasi' => $id,
-            'keterangan'   => $request->keterangan,
+            'judul'   => $request->judul,
             'deskripsi' => $request->deskripsi
+            // 'deskripsi' => $request->deskripsi
         ];
 
         $updateData = informasi::where('idinformasi', $request->id)->update($data);
+        if ($request->gambar) {
+            $updateData = informasi::find($request->id);
+            $existingImage = $updateData->gambar;
+
+            if ($existingImage) {
+                // Delete the previous image
+                $imagePath = public_path('images/' . $existingImage);
+                if (File::exists($imagePath)) {
+                    File::delete($imagePath);
+                }
+            }
+
+            $imageName = time() . '.' . $request->gambar->extension();
+            $request->gambar->move(public_path('images'), $imageName);
+
+            // Update the image field in the database
+            $updateData->update([
+                'gambar' => $imageName
+            ]);
+            // $updateData->save();
+        }
+
 
         if ($updateData) {
             return redirect()->route('datainformasi')->with('success', 'Data berhasil di ubah');
@@ -397,9 +494,15 @@ class AdminController extends Controller
             return redirect()->route('datainformasi')->with('failed', 'Data gagal di ubah');
         }
     }
+
     public function deletedatainformasi($id)
     {
         $data = informasi::find($id);
+        $imagePath = public_path('images/' . $data->gambar);
+        if (File::exists($imagePath)) {
+            File::delete($imagePath);
+        }
+
         $data->delete();
         return redirect()->route('datainformasi')->with('success', 'Data Berhasil Di Hapus');
     }
@@ -415,19 +518,19 @@ class AdminController extends Controller
         $perkembangan = perkembangan::where('idperkembangan', $id)->first();
 
 
-        $label =[];
-        $panjangs =[];
-        $color =[];
-        $bcolor =[];
-        $det =detail_perkembangan::where('idperkembangan',$perkembangan->idperkembangan)->orderBy('created_at','ASC')->get();
+        $label = [];
+        $panjangs = [];
+        $color = [];
+        $bcolor = [];
+        $det = detail_perkembangan::where('idperkembangan', $perkembangan->idperkembangan)->orderBy('created_at', 'ASC')->get();
         foreach ($det as $key) {
-            array_push($label,$key->tanggal->format('d-m-Y'));
-            array_push($panjangs,$key->panjang_badan);
-            array_push($color,($key->status == 'masuk' ? 'rgba(255, 0, 25)' : ($key->status == 'tahap' ? 'rgba(255, 255, 0)':'rgba(9, 255, 0)')));
-            array_push($bcolor,($key->status == 'masuk' ? 'rgba(255, 0, 25, 0.2)' : ($key->status == 'tahap' ? 'rgba(255, 255, 0, 0.8)':'rgba(9, 255, 0, 0.8)')));
+            array_push($label, $key->tanggal->format('d-m-Y'));
+            array_push($panjangs, $key->panjang_badan);
+            array_push($color, ($key->status == 'masuk' ? 'rgba(255, 0, 25)' : ($key->status == 'tahap' ? 'rgba(255, 255, 0)' : 'rgba(9, 255, 0)')));
+            array_push($bcolor, ($key->status == 'masuk' ? 'rgba(255, 0, 25, 0.2)' : ($key->status == 'tahap' ? 'rgba(255, 255, 0, 0.8)' : 'rgba(9, 255, 0, 0.8)')));
         }
         $panjang = array_map('intval', $panjangs);
-        return view('admin.detailperkembangan', compact(['perkembangan','label','panjang','color','bcolor']));
+        return view('admin.detailperkembangan', compact(['perkembangan', 'label', 'panjang', 'color', 'bcolor']));
     }
     public function tambahdataperkembangan()
     {
@@ -471,7 +574,7 @@ class AdminController extends Controller
     public function editdataperkembangan($idperkembangan)
     {
         $perkembangan = perkembangan::where('idperkembangan', $idperkembangan)->first();
-        $balita = balita::where('idbalita',$perkembangan->idbalita)->first();
+        $balita = balita::where('idbalita', $perkembangan->idbalita)->first();
         return view('admin.editperkembangan', compact(['perkembangan', 'balita']));
     }
 
@@ -540,8 +643,8 @@ class AdminController extends Controller
         $cekbalita = perkembangan::where('idbalita', $balita->idbalita)->first();
         // dd($aturan);
         if (is_null($aturan)) {
-          
-            return redirect()->route('hasildiagnosa',[$idD,$bulan,$request->panjang]);
+
+            return redirect()->route('hasildiagnosa', [$idD, $bulan, $request->panjang]);
         } else {
 
             if ($request->panjang > $aturan->panjang_badan) {
@@ -589,10 +692,8 @@ class AdminController extends Controller
                         'status' => 'tahap',
                         'tanggal' => Carbon::now(),
                     ]);
-
-
                 } else {
-                    
+
                     $data = diagnosa::create([
                         'idDiagnosa' => $idD,
                         'tanggal' => Carbon::now(),
@@ -621,26 +722,26 @@ class AdminController extends Controller
 
             // dd($data->idDiagnosa);
 
-            return redirect()->route('hasildiagnosa',[$data->idDiagnosa,$bulan,$request->panjang]);
+            return redirect()->route('hasildiagnosa', [$data->idDiagnosa, $bulan, $request->panjang]);
         }
     }
 
-    public function hasildiagnosa($id,$umur,$panjang)
+    public function hasildiagnosa($id, $umur, $panjang)
     {
         // if ($id == 0) {
         //     str_replace([' ', "'"], '-', strtolower('diagnosa-' . CarbonImmutable::now()->timestamp . Str::random(3)));
         // }
-        $data = diagnosa::where('idDiagnosa',$id)->first();
+        $data = diagnosa::where('idDiagnosa', $id)->first();
         $umur1 = $umur;
         $panjang1 = $panjang;
-        return view('admin.hasildiagnosaS',compact(['data','umur1','panjang1']));
+        return view('admin.hasildiagnosaS', compact(['data', 'umur1', 'panjang1']));
     }
-    public function hasildiagnosaS($umur,$panjang)
+    public function hasildiagnosaS($umur, $panjang)
     {
         // $data = diagnosa::where('idDiagnosa',$id)->first();
         $umur1 = $umur;
         $panjang1 = $panjang;
-        return view('admin.hasildiagnosaUL',compact(['umur1','panjang1']));
+        return view('admin.hasildiagnosaUL', compact(['umur1', 'panjang1']));
     }
     public function dataposyandu()
     {

@@ -36,7 +36,7 @@ class diagnosa extends Model
 
     protected $primaryKey = 'idDiagnosa';
     protected $keyType = 'string';
-    // protected $primaryKey = 'id';
+ 
     public $incrementing = false;
     
    

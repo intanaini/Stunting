@@ -24,6 +24,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
+Route::get('/profil', [App\Http\Controllers\ProfilController::class, 'index'])->middleware('auth')->name('profil');
 
 
 Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'hakakses:admin']], function(){
@@ -111,15 +112,22 @@ Route::group(['prefix'=>'pakar', 'middleware'=>['auth', 'hakakses:pakar']], func
     Route::get('/dashboard', [App\Http\Controllers\PakarController::class, 'index'])->name('pakar');
     Route::get('/melihatlaporan', [App\Http\Controllers\PakarController::class, 'melihatlaporan'])->name('melihatlaporan');
     Route::get('/blschat', [App\Http\Controllers\PakarController::class, 'blschat'])->name('blschat');
-    Route::get('/viewchat', [App\Http\Controllers\PakarController::class, 'viewchat'])->name('viewchat');
+    Route::get('/reload-chat', [App\Http\Controllers\PakarController::class, 'reload_chat'])->name('reload-chat');
+    Route::any('/blschat-kirimchat', [App\Http\Controllers\PakarController::class, 'kirimUser'])->name('blschat-pakar');
+    Route::get('/viewchat/{id}', [App\Http\Controllers\PakarController::class, 'viewchat'])->name('viewchat');
 });
 
 Route::group(['prefix'=>'pengguna', 'middleware'=>['auth', 'hakakses:pengguna']], function(){
     Route::get('/dashboard', [App\Http\Controllers\PenggunaController::class, 'index'])->name('pengguna');
     Route::get('/chat', [App\Http\Controllers\PenggunaController::class, 'chat'])->name('chat');
+    Route::get('/reload-chat', [App\Http\Controllers\PenggunaController::class, 'reloadchat'])->name('reload-chat');
+    Route::any('/kirimchat', [App\Http\Controllers\PenggunaController::class, 'kirimUser'])->name('kirimUser');
     Route::get('/balita', [App\Http\Controllers\PenggunaController::class, 'balita'])->name('balita');
     Route::get('/lhtperkembangan', [App\Http\Controllers\PenggunaController::class, 'lhtperkembangan'])->name('lhtperkembangan');
     Route::get('/informasi', [App\Http\Controllers\PenggunaController::class, 'informasi'])->name('informasi');
+    Route::get('/lihat-informasi/{id}', [App\Http\Controllers\PenggunaController::class, 'viewinfo'])->name('viewinfo');
+    Route::get('/viewperkembangan/{id}', [App\Http\Controllers\AdminController::class, 'viewperkembangan'])->name('viewperkembangan-user');
+
 });
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Route::get('/hasilS', function () {

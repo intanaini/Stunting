@@ -18,4 +18,7 @@ class posyandu extends Model
     protected $casts = [
         'idposyandu'=> 'string',
     ];
+    protected $keyType = 'string';
+ 
+    public $incrementing = false;
 }

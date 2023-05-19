@@ -24,4 +24,12 @@ class balita extends Model
         'idbalita'=> 'string',
         'tanggal_lahir'=>'datetime'
     ];
+    protected $keyType = 'string';
+ 
+    public $incrementing = false;
+
+    public function perkembangan()
+    {
+        return $this->hasMany(perkembangan::class,'idbalita');
+    }
 }
