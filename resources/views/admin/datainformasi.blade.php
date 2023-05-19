@@ -4,14 +4,17 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Aturan Metode</h4>
+            <h4 class="card-title">Informasi</h4>
             <a href="{{ route('tambah-informasi') }}" class="btn btn-primary btn-rounded btn-fw">Tambah Informasi</a>
             <div class="table-responsive">
               <table class="table table-striped">
                 <thead>
                   <tr>
                     <th>
-                      Keterangan
+                      Gambar
+                    </th>
+                    <th>
+                      Judul
                     </th>
                     <th>
                       Deskripsi
@@ -27,10 +30,15 @@
                   @foreach ($informasi as $item) 
                   <tr>
                     <td>
-                      {{ $item->keterangan }}
+                      <img src="{{ asset('images/'. $item->gambar ) }}" alt="">
+                      
                     </td>
                     <td>
-                      {{ $item->deskripsi }}
+                      {{ $item->judul }}
+                    </td>
+                    <td>
+
+                      {{  Str::limit($item->deskripsi, 50, '...') }}
                     </td>
                     <td class="text-center">
                       <a href="{{ route('edit-informasi',$item->idinformasi) }}" class="btn btn-primary btn-rounded btn-fw"  >Edit</a>

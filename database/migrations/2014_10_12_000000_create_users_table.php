@@ -15,12 +15,12 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->string('id_user')->primary();
-            $table->string('idposyandu');
+            $table->string('idposyandu')->nullable();
             $table->string('name');
             $table->string('nik')->unique();
             $table->string('no_hp');
             $table->string('password');
-            $table->string('id_posyandu')->nullable();
+            // $table->string('id_posyandu')->nullable();
             $table->enum('role', ['superadmin','admin','pakar','pengguna']);
             $table->enum('status_users', ['aktif','tidak aktif'])-> default('aktif');
             $table->foreign('idposyandu')->references('idposyandu')->on('posyandus');

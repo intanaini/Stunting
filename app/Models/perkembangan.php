@@ -19,6 +19,9 @@ class perkembangan extends Model
     protected $casts = [
         'idperkembangan'=> 'string',
     ];
+    protected $keyType = 'string';
+ 
+    public $incrementing = false;
     public function balita()
     {
     //  idposyandu pertama dari penamaan database disini, idposyandu setelah koma dari database asli posyandu

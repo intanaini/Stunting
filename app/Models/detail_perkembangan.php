@@ -22,6 +22,9 @@ class detail_perkembangan extends Model
         'tanggal' => 'datetime',
         'iddetail_perkembangan'=> 'string',
     ];
+    protected $keyType = 'string';
+ 
+    public $incrementing = false;
     public function perkembangan()
     {
     //  idposyandu pertama dari penamaan database disini, idposyandu setelah koma dari database asli posyandu

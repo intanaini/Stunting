@@ -31,4 +31,7 @@ class aturan extends Model
     protected $casts = [
         'idaturan'=> 'string',
     ];
+    protected $keyType = 'string';
+ 
+    public $incrementing = false;
 }

@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Password</label>
-                  <input type="password" value="{{ $admin->password }}" class="form-control" id="password" name="password" placeholder="password">
+                  <input type="password"   class="form-control" id="password" name="password" placeholder="password">
                   @error('password')
                                     <span class="text-danger" >
                                         <strong>{{ $message }}</strong>
@@ -88,7 +88,7 @@
                 </div>
                 
                 <button type="submit" class="btn btn-primary me-2">Simpan</button>
-                <button class="btn btn-light">Kembali</button>
+                <a href="{{ url()->previous() }}" class="btn btn-light">Kembali</a>
               </form>
             </div>
           </div>

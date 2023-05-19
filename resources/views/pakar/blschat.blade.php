@@ -25,22 +25,26 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach ($chat->unique('idpengirim') as $item)
+                      
                     <tr>
                       <td>
-                        Siti
+                        {{ $item->pengirim->name }}
                       </td>
                       <td>
-                        bla bla bla
+                       {{ $item->isi_text }}
                       </td>
                       <td>
-                        04/05/2023
+                        {{ $item->tanggal }}
                       </td>
                       <td class="text-center">
-                        <a href="{{ route('viewchat') }}" type="button" class="btn btn-primary btn-rounded btn-icon">
+                        <a href="{{ route('viewchat',$item->idpengirim) }}" type="button" class="btn btn-primary btn-rounded btn-icon">
                             <i class="mdi mdi-eye"></i>
                           </a>
                       </td>
                     </tr>
+                  @endforeach
+
                   {{-- @json($posyandu) --}}
                   {{-- @foreach ($balita as $item)
                     <td>

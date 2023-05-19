@@ -42,12 +42,12 @@ class SuperAdminController extends Controller
     public function insertdataposyandu(Request $request)
     {
         $this->validate($request, [
-           'idposyandu' => 'required',
+        //    'idposyandu' => 'required',
            'nama_posyandu' => 'required', 
            'alamat_posyandu' => 'required', 
            'jadwal_posyandu' => 'required',
         ]);
-        $ids = $request->idposyandu;
+        $ids = 'ps-'.Str::random(3);
         $request->merge(['password' => Hash::make($request->input('password'))]);
        $posyandu = posyandu::create([
         'idposyandu'=>$ids,
