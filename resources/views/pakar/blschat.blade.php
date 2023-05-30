@@ -32,7 +32,7 @@
                         {{ $item->pengirim->name }}
                       </td>
                       <td>
-                       {{ $item->isi_text }}
+                       {{ substr( $item->isi_text,0,50) }}
                       </td>
                       <td>
                         {{ $item->tanggal }}

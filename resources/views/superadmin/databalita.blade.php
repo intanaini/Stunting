@@ -34,7 +34,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @json($user)
+                  {{-- @json($user) --}}
                   @foreach ($user as $item)
                       
                   <tr>
@@ -57,10 +57,10 @@
 
                     </td>
                     <td>
-                      {{ $item->posyandu }}
+                      {{ $item->ortu->posyandu->nama_posyandu }}
                     </td>
                     <td>
-                      {{ $item->perkembangan }}
+                      {{ $item->perkembangan[0]->status }}
                     </td>
                     {{-- <td>
                       <a href="{{ route('edit-user',$item->id_user) }}" class="btn btn-primary btn-rounded btn-fw">Edit</a>

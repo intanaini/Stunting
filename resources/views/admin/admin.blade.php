@@ -2,17 +2,67 @@
 
 @section('Isi')
 <div class="continer-fluid mt-3 mx-3">
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-md-12">
             <h2>Hallo, Selamat Datang di Sistem Pakar Penentuan Balita Stunting!!!</h2>
         </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-lg-4 d-flex flex-column mb-2">
+        <div class="card bg-primary card-rounded">
+          <div class="card-body pb-0">
+            <h4 class="card-title mb-2 card-title-dash text-white ">Jumlah Balita</h4>
+            <h2 class="text-white mb-4">{{ $jb }}</h2>
+          </div>
+        </div>
+        
+      </div>
+      <div class="col-lg-4 d-flex flex-column mb-2">
+        <div class="card bg-warning card-rounded">
+          <div class="card-body pb-0">
+            <h4 class="card-title mb-2 card-title-dash text-white ">Jumlah Penguna</h4>
+            <h2 class="text-white mb-4">{{ $jp }}</h2>
+          </div>
+        </div>
+        
+      </div>
+      <div class="col-lg-4 d-flex flex-column mb-2">
+        <div class="card bg-success card-rounded">
+          <div class="card-body pb-0">
+            <h4 class="card-title mb-2 card-title-dash text-white ">Jumlah Diagnosa</h4>
+            <h2 class="text-white mb-4">{{ $jd }}</h2>
+          </div>
+        </div>
+        
+      </div>
+       
+     
     </div>
 
           <div class="row">
             <div class="col-sm-12">
               <div class="home-tab">
                     <div class="row">
-                      <div class="col-lg-12 d-flex flex-column">
+                      <div class="col-lg-3 d-flex flex-column">
+                        <div class="row flex-grow">
+                            <div class="col-12 grid-margin stretch-card">
+                              <div class="card card-rounded">
+                                <div class="card-body">
+                                  <div class="row">
+                                    <div class="col-lg-12">
+                                      <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h4 class="card-title card-title-dash">Total Data Stunting Di {{ Auth::user()->posyandu->nama_posyandu }}</h4>
+                                      </div>
+                                      <canvas class="my-auto" id="doughnutChart" height="200"></canvas>
+                                      <div id="doughnut-chart-legend" class="mt-5 text-center"></div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                      </div>                      
+                    </div>
+                      <div class="col-lg-9 d-flex flex-column">
                         <div class="row flex-grow">
                           <div class="col-12 col-lg-4 col-lg-12 grid-margin stretch-card">
                             <div class="card card-rounded">
@@ -33,55 +83,11 @@
                         </div>
                       </div>
                       
+                      
                     </div>
-                    <div class="row">
-                      <div class="col-lg-4 d-flex flex-column">
-                        <div class="row flex-grow">
-                            <div class="col-12 grid-margin stretch-card">
-                              <div class="card card-rounded">
-                                <div class="card-body">
-                                  <div class="row">
-                                    <div class="col-lg-12">
-                                      <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <h4 class="card-title card-title-dash">Total Data Stunting Di {{ Auth::user()->posyandu->nama_posyandu }}</h4>
-                                      </div>
-                                      <canvas class="my-auto" id="doughnutChart" height="200"></canvas>
-                                      <div id="doughnut-chart-legend" class="mt-5 text-center"></div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                      </div>                      
-                    </div>
-                      <div class="col-lg-8 d-flex flex-column">
-                        <div class="row flex-grow">
-                          <div class="col-12 grid-margin stretch-card">
-                            <div class="card card-rounded">
-                              <div class="card-body">
-                                
-                                <div class="d-sm-flex align-items-center mt-1 justify-content-between">
-                                  <div class="d-sm-flex justify-content-between align-items-start">
-                                    <div>
-                                      <h4 class="card-title card-title-dash">Market Overview</h4>
-                                     <p class="card-subtitle card-subtitle-dash">Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                                    </div>
-                                    
-                                  </div>
-                                  <div class="me-3"><div id="marketing-overview-legend"></div></div>
-                                </div>
-                                <div class="chartjs-bar-wrapper mt-3">
-                                  <canvas id="marketingOverview"></canvas>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        
-                      </div>
+                      
                       
                         
-                      </div>
                     {{-- </div> --}}
                   </div>
                 </div>

@@ -151,7 +151,7 @@
               <p class="mb-1 mt-3 font-weight-semibold">{{ Auth::user()->name }}</p>
               <p class="fw-light text-muted mb-0">{{ Auth::user()->nik }}</p>
             </div>
-            <a href="{{ route('profil') }}" class="dropdown-item"> <i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Profil</a>
+            <a href="{{ route('profil') }}" class="dropdown-item"> <i class="dropdown-item-icon mdi mdi-account-circle text-primary  me-2"></i> Profil</a>
             <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

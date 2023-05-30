@@ -20,9 +20,27 @@ class PenggunaController extends Controller
     }
     public function chat()
     {
+        $sekarang = Carbon::now()->format('Y-m-d');
+        $kemarin = Carbon::yesterday()->format('Y-m-d');
         $pesans = chat::orWhere('idpengirim', Auth::user()->id_user)->orWhere('idpenerima', Auth::user()->id_user)->orderBy('created_at', 'ASC')->get();
         $initialDataCount = chat::count();
-        return view('pengguna.chat', compact(['pesans','initialDataCount']));
+        $grup = $pesans->groupBy(function ($item) {
+            $date = Carbon::parse($item->created_at)->format('Y-m-d');
+            $sekarang = Carbon::now()->format('Y-m-d');
+            $kemarin = Carbon::yesterday()->format('Y-m-d');
+            if ($date == $sekarang) {
+                return 'Hari ini';
+                # code...
+            } elseif ($date == $kemarin) {
+                return 'Kemarin';
+            } else {
+
+                return date('d F', strtotime($item->created_at));
+            }
+        });
+        $uniq = $grup->keys();
+        // dd($grup);
+        return view('pengguna.chat', compact(['pesans', 'initialDataCount','grup']));
     }
     public function reloadchat()
     {

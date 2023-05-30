@@ -42,59 +42,16 @@
                 @csrf
                 
                 <div class="form-group">
-                  <input type="nik" class="form-control form-control-lg" value="{{ old('nik') }}" name="nik" placeholder="NIK">
+                  <input type="nik" class="form-control form-control-lg" value="{{ old('nik') }}" name="nik" placeholder="Kode Aktivasi">
                   @error('nik')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                 </div>
-                <div class="form-group">
-                    <input type="Nama" class="form-control form-control-lg" value="{{ old('Nama') }}" name="name" placeholder="Nama">
-                    @error('name')
-                                      <span class="invalid-feedback" role="alert">
-                                          <strong>{{ $message }}</strong>
-                                      </span>
-                                  @enderror
-                </div>
-                <div class="form-group">
-                    <input type="no.hp" class="form-control form-control-lg" value="{{ old('no.hp') }}" name="no_hp" placeholder="No. HP">
-                    @error('no_hp')
-                                      <span class="invalid-feedback" role="alert">
-                                          <strong>{{ $message }}</strong>
-                                      </span>
-                                  @enderror
-                </div>
-                <div class="form-group">
-                    <input type="posyandu" class="form-control form-control-lg" value="{{ old('posyandu') }}" name="posyandu" placeholder="Posyandu">
-                    @error('posyandu')
-                                      <span class="invalid-feedback" role="alert">
-                                          <strong>{{ $message }}</strong>
-                                      </span>
-                                  @enderror
-                </div>
-                <div class="form-group">
-                  <input type="password" class="form-control form-control-lg"  name="password" placeholder="Password">
-                  @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                </div>
-                
-                
-                <div class="mt-3">
-                  <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Daftar</button>
-                </div>
-                {{-- <div class="my-2 d-flex justify-content-between align-items-center">
-                  <div class="form-check">
-                    <label class="form-check-label text-muted">
-                      <input type="submit" class="form-check-input">
-                      Tidak Memiliki Akun?
-                    </label>
-                  </div>
-                  <a href="/register" class="auth-link text-black">Daftar Sekarang</a>
-                </div> --}}
+				<div class="mt-3">
+					<button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Aktivasi</button>
+				  </div>
               </form>
             </div>
           </div>

@@ -8,22 +8,9 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Edit Informasi</h4>
-                            <form method="POST" action="{{ route('update-informasi', $informasi->idinformasi) }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('update-informasi', $informasi->idinformasi) }}"
+                                enctype="multipart/form-data">
                                 @csrf
-                                <div class="form-group">
-                                  <td>
-                                      <ul class="list-inline">
-                                          <li class="list-inline-item">
-                                              <input type="file" name="gambar" id="gambar">
-                                          </li>
-                                      </ul>
-                                  </td>
-                                  @error('gambar')
-                                      <span class="text-danger">
-                                          <strong>{{ $message }}</strong>
-                                      </span>
-                                  @enderror
-                              </div>
                                 <div class="form-group">
                                     <label for="exampleInputConfirmPassword1">Judul</label>
                                     <input value=" {{ $informasi->judul }} " type="text" class="form-control"
@@ -36,15 +23,26 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Deskripsi</label>
-                                    <input value=" {{ $informasi->deskripsi }}" type="text" class="form-control"
-                                        id="deskripsi" name="deskripsi" placeholder="Deskripsi">
+                                    <textarea class="form-control w-100 h-100"   id="deskripsi" name="deskripsi"
+                                        rows="5">{{ $informasi->deskripsi }}</textarea>
                                     @error('deskripsi')
                                         <span class="text-danger">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
-
+                                <div class="form-group">
+                                    <label>File upload</label>
+                                    <input type="file" name="gambar" class="file-upload-default">
+                                    <div class="input-group col-xs-12">
+                                        <input type="text" class="form-control file-upload-info" disabled
+                                            placeholder="Upload Image">
+                                        <span class="input-group-append">
+                                            <button class="file-upload-browse btn btn-primary"
+                                                type="button">Upload</button>
+                                        </span>
+                                    </div>
+                                </div>
                                 <button type="submit" class="btn btn-primary me-2">Simpan</button>
                                 <a href="{{ url()->previous() }}" class="btn btn-light">Kembali</a>
                             </form>
@@ -52,3 +50,21 @@
                     </div>
                 </div>
             @endsection
+
+            @push('js')
+                <script>
+                    (function($) {
+                        'use strict';
+                        $(function() {
+                            $('.file-upload-browse').on('click', function() {
+                                var file = $(this).parent().parent().parent().find('.file-upload-default');
+                                file.trigger('click');
+                            });
+                            $('.file-upload-default').on('change', function() {
+                                $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i,
+                                    ''));
+                            });
+                        });
+                    })(jQuery);
+                </script>
+            @endpush

@@ -5,7 +5,7 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">BALITA</h4>
-            <a href="{{ route('tambah-balita') }}" class="btn btn-primary btn-rounded btn-fw">Tambah Admin</a>
+            <a href="{{ route('tambah-balita') }}" class="btn btn-primary btn-rounded btn-fw">Tambah Balita</a>
             <div class="table-responsive">
               <table class="table table-striped">
                 <thead>

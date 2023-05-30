@@ -17,7 +17,7 @@ class CreateChatsTable extends Migration
             $table->string('idchat')->primary();
             $table->string('idpengirim');
             $table->string('idpenerima');
-            $table->string('isi_text');
+            $table->longText('isi_text');
             $table->string('pakar');
             $table->dateTime('tanggal');
             $table->foreign('idpengirim')->references('id_user')->on('users');

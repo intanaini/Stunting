@@ -24,8 +24,12 @@ class AdminController extends Controller
     public function index()
     {
         $data = User::where('idposyandu',Auth::user()->idposyandu)->pluck('id_user')->toArray();
+        $jb = balita::whereIn('idortu',$data)->count();
+        $jp = User::where('role','pengguna')->whereIn('id_user',$data)->count();
+        // dd($jumlahbalita);
         // dd($data);
         $balita =balita::whereIn('idortu',$data)->pluck('idbalita')->toArray();
+        $jd = diagnosa::whereIn('idbalita',$balita)->count();
         // dd($balita);        // $ortu = 
 
         $dataStunting = [];
@@ -50,7 +54,7 @@ class AdminController extends Controller
         array_push($totaldata,$tts->count() ?? 0);
         // dd($dataStunting);
 
-        return view('admin.admin', compact(['data', 'dataStunting','dataTDKStunting','totaldata']));
+        return view('admin.admin', compact(['data', 'dataStunting','dataTDKStunting','totaldata','jb','jp','jd']));
     }
     // admin
     public function dataadmin()
@@ -468,6 +472,7 @@ class AdminController extends Controller
         if ($request->gambar) {
             $updateData = informasi::find($request->id);
             $existingImage = $updateData->gambar;
+            // dd($existingImage);
 
             if ($existingImage) {
                 // Delete the previous image
@@ -748,8 +753,22 @@ class AdminController extends Controller
         $posyandu = posyandu::all();
         return view('admin.dataposyandu', compact(['posyandu']));
     }
-    public function datalaporan()
+    public function laporandiagnosa()
     {
-        return view('admin.datalaporan');
+         $diagnosa = diagnosa::all();
+        return view('admin.laporandiagnosa',compact(['diagnosa']));
+    }
+    public function laporanperkembangan()
+    {
+        $perkembangan = perkembangan::all();
+        return view('admin.laporanperkembangan',compact(['perkembangan']));
+    }
+    public function cetaklaporanD()
+    {
+        return view('admin.cetaklaporanD');
+    }
+    public function cetaklaporanP()
+    {
+        return view('admin.cetaklaporanP');
     }
 }

@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('no_hp');
             $table->string('password');
             // $table->string('id_posyandu')->nullable();
-            $table->enum('role', ['superadmin','admin','pakar','pengguna']);
+            $table->enum('role', ['superadmin','admin','pakar','pengguna'])->default('pengguna');
             $table->enum('status_users', ['aktif','tidak aktif'])-> default('aktif');
             $table->foreign('idposyandu')->references('idposyandu')->on('posyandus');
             $table->rememberToken();

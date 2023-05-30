@@ -25,8 +25,8 @@
                     <th>
                       Posyandu
                     </th>
-                    <th>
-                      aksi
+                    <th class="text-center">
+                      Aksi
                     </th>
                   </tr>
                 </thead>
@@ -36,7 +36,7 @@
                       
                   <tr>
                     <td class="py-1">
-                      {{ $item->nik }}
+                      {{ '*************'.substr($item->nik,-5) }}
                     </td>
                     <td>
                       {{ $item->name }}
@@ -52,7 +52,7 @@
                     <td>
                       {{ $item->posyandu->nama_posyandu }}
                     </td>
-                    <td>
+                    <td class="text-center">
                       <a href="{{ route('edit-user',$item->id_user) }}" class="btn btn-primary btn-rounded btn-fw">Edit</a>
                       <a href="{{ route('delete-user', $item->id_user) }}" class="btn btn-danger btn-rounded btn-fw">Delete</a>
                     </td>

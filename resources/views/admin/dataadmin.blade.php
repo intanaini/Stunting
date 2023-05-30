@@ -36,7 +36,7 @@
                       
                   <tr>
                     <td class="py-1">
-                      {{ $item->nik }}
+                      {{ '*************'.substr($item->nik,-5) }}
                     </td>
                     <td>
                       {{ $item->name }}
