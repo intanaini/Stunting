@@ -19,8 +19,8 @@ class CreateDiagnosasTable extends Migration
             $table->string('idbalita')->nullable();
             $table->dateTime('tanggal')->nullable();
             $table->string('hasil_diagnosa')->nullable();
-            $table->foreign('idaturan')->references('idaturan')->on('aturans');
-            $table->foreign('idbalita')->references('idbalita')->on('balitas');
+            $table->foreign('idaturan')->references('idaturan')->on('aturans')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('idbalita')->references('idbalita')->on('balitas')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

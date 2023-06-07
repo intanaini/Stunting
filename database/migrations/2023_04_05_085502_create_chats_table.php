@@ -20,8 +20,8 @@ class CreateChatsTable extends Migration
             $table->longText('isi_text');
             $table->string('pakar');
             $table->dateTime('tanggal');
-            $table->foreign('idpengirim')->references('id_user')->on('users');
-            $table->foreign('idpenerima')->references('id_user')->on('users');
+            $table->foreign('idpengirim')->references('id_user')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('idpenerima')->references('id_user')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

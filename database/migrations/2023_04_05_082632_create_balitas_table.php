@@ -21,7 +21,7 @@ class CreateBalitasTable extends Migration
             $table->string('jenis_kelamin');
             $table->string('tempat_lahir');
             $table->dateTime('tanggal_lahir');
-            $table->foreign('idortu')->references('id_user')->on('users');
+            $table->foreign('idortu')->references('id_user')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -7,7 +7,7 @@
         <div class="col-12  stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Tambah user</h4>
+              <h4 class="card-title">Tambah Pengguna</h4>
               <form method="POST"  action="{{ route('insert-user') }}" >
                 @csrf
                 <div class="form-group">

@@ -10,6 +10,7 @@
               <h4 class="card-title">Edit Posyandu</h4>
               <form method="POST"  action="{{ route('update-posyandu',$posyandu->idposyandu) }}" >
                 @csrf
+                <input type="hidden" name="id" id="id" value="{{ $posyandu->idposyandu }}">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nama</label>
                     <input value=" {{ $posyandu->nama_posyandu }}" type="text" class="form-control" id="nama_posyandu" name="nama_posyandu" placeholder="Nama">
@@ -30,7 +31,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputConfirmPassword1">Jadwal Posyandu</label>
-                    <input value="{{ $posyandu->jadwal_posyandu }}" type="text" class="form-control" id="jadwal_posyandu" name="jadwal_posyandu" placeholder="No.HP">
+                    <input value="{{ $posyandu->jadwal_posyandu }}" type="text" class="form-control" id="jadwal_posyandu" name="jadwal_posyandu" placeholder="Jadwal Posyandu">
                     @error('jadwal_posyandu')
                                       <span class="text-danger" >
                                           <strong>{{ $message }}</strong>
@@ -39,7 +40,7 @@
                   </div>
   
                 
-                <a type="submit" href="{{ route('mengeloladataposyandu') }}" class="btn btn-primary me-2">Simpan</a>
+                <button type="submit"  class="btn btn-primary me-2">Simpan</button>
                 <a href="{{ url()->previous() }}" class="btn btn-light">Kembali</a>
               </form>
             </div>

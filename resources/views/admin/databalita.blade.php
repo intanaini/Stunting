@@ -39,7 +39,7 @@
                       {{ $item->idbalita }}
                     </td> --}}
                     <td>
-                      {{ $item->nik }}
+                      {{ '*************'.substr($item->nik,-5) }}
                     </td>
                     <td>
                       {{ $item->nama_balita }}

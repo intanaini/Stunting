@@ -4,7 +4,8 @@
 <div class="card">
     <div class="card-body mt-5">
         <div class="row">
-            <div class="col-6"><img src="{{ asset('disk/images/stunting.png') }}" alt="" width="590"></div>
+            <div class="col-6"><img src="{{ asset('disk/images/stunting.png') }}" alt="" class="w-100">
+            </div>
             <div class="col-6">
                 <h2><strong>Balita Anda Memiliki Usia Lebih dari 60 Bulan</strong></h2><br>
                 <br><h4>Upaya Pencegahan Stunting</h4>

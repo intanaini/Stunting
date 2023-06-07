@@ -35,10 +35,10 @@
                                         @if ($item->idpenerima == Auth::user()->id_user)
                                             
                                             <div>
-                                                {{ $item->tanggal }}
+                                                {{ $item->pengirim->name }}
                                             </div>
                                         @else
-                                            
+                                            <div></div>
                                             <div>
                                                 {{ $item->pengirim->name }}
                                             </div>

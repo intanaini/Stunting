@@ -63,7 +63,7 @@ class SuperAdminController extends Controller
     }
     public function mengeloladataposyandu()
     {
-        $posyandu = posyandu::all();
+        $posyandu = posyandu::all()->sortBy('nama_posyandu');
         return view('superadmin.mengeloladataposyandu', compact('posyandu'));
     }
     public function tambahdataposyandu()

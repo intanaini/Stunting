@@ -77,14 +77,16 @@ class PenggunaController extends Controller
     }
     public function insertdatabalita(Request $request)
     {
+        // dd($request);
         $this->validate($request, [
             'nik' => 'required',
             'nama_balita' => 'required',
             'jenis_kelamin' => 'required',
-            'tempat_lahir' => 'required|min:8',
+            'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'orang_tua' => 'required'
         ]);
+
         $ids = 'balita-' . Str::random(8);
         // $request->merge(['password' => Hash::make($request->input('password'))]);
         $balita = balita::create([
@@ -96,6 +98,7 @@ class PenggunaController extends Controller
             'tempat_lahir'   => $request->tempat_lahir,
             'tanggal_lahir'   => $request->tanggal_lahir
         ]);
+        // dd($balita);
 
         if ($balita) {
             return redirect()->route('databalita')->with('success', 'Data berhasil di tambahkan');
@@ -103,6 +106,7 @@ class PenggunaController extends Controller
             return redirect()->route('databalita')->with('failed', 'Data gagal di tambahkan');
         }
     }
+
     public function editdatabalita($idbalita)
     {
         $balita = balita::where('idbalita', $idbalita)->first();

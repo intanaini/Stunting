@@ -1012,7 +1012,19 @@
                 <th>Tanggal Diagnosa</th>
         </thead>
         <tbody>
-
+            @php
+                $no = 1;
+            @endphp
+            @foreach ($diagnosa as $item)
+                <tr>
+                    <td>{{ $no++ }}</td>
+                    <td>{{ $item->balita->ortu->name }}</td>
+                    <td>{{ $item->balita->nama_balita }}</td>
+                    <td>{{ $item->balita->ortu->posyandu->nama_posyandu }}</td>
+                    <td>{{ $item->hasil_diagnosa }}</td>
+                    <td>{{ $item->tanggal }}</td>
+                </tr>
+            @endforeach
         </tbody>
 
     </table>
@@ -1029,13 +1041,11 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    {{-- <script type="text/javascript">
-
-        $(document).ready(function () {
+    <script type="text/javascript">
+        $(document).ready(function() {
             window.print();
         });
-
-        </script> --}}
+    </script>
 
 </body>
 

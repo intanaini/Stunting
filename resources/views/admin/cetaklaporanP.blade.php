@@ -949,7 +949,8 @@
             box-shadow: none;
             background: #cfc
         }
-		img {
+
+        img {
             max-width: 100%;
             height: 300px;
         }
@@ -959,7 +960,7 @@
                 max-width: 100%;
                 height: auto;
             }
-		}
+        }
     </style>
 
     <meta charset="UTF-8">
@@ -994,11 +995,11 @@
     </style>
 
 
-	<div class="header">
-		<img src="\images\logo1.png" alt="">
-		<hr />
-		<br>
-	</div>
+    <div class="header">
+        <img src="\images\logo1.png" alt="">
+        <hr />
+        <br>
+    </div>
 
     <table border="1" align="center" width="100%" id="data-laporan" class="table table-bordered table-hover">
         <thead>
@@ -1009,10 +1010,25 @@
                 <th>Panjang Badan</th>
                 <th>Umur</th>
                 <th>Status</th>
-				<th>Posyandu</th>
+                <th>Posyandu</th>
         </thead>
         <tbody>
+            @php
+                $no = 1;
+            @endphp
+            @foreach ($perkembangan as $key)
+                <tr>
+                    <td>{{ $no++ }}</td>
 
+                    <td>{{ $key->balita->ortu->name }}</td>
+                    <td>{{ $key->balita->nama_balita }}</td>
+                    <td>{{ $key->panjang_badan }}</td>
+                    <td>{{ $key->balita->tanggal_lahir->diffInMonths(\Carbon\Carbon::now()) . ' Bulan' }}</td>
+                    <td>{{ $key->status }}</td>
+                    <td>{{ $key->balita->ortu->posyandu->nama_posyandu }}</td>
+
+                </tr>
+            @endforeach
         </tbody>
 
     </table>
@@ -1029,13 +1045,11 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    {{-- <script type="text/javascript">
-
-        $(document).ready(function () {
+    <script type="text/javascript">
+        $(document).ready(function() {
             window.print();
         });
-
-        </script> --}}
+    </script>
 
 </body>
 

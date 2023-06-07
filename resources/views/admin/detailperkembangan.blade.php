@@ -24,11 +24,40 @@
                                     <div class="card-body">
                                         <div class="d-sm-flex justify-content-between align-items-start">
                                             <div>
-                                                <h4 class="card-title card-title-dash">Perkembangan Balita {{ $perkembangan->balita->nama_balita }}</h4>
-                                                <h5 class="card-subtitle card-subtitle-dash">*Lingkaran Merah : Masuk
-                                                    Stunting <br>
-                                                    *Lingkaran Kuning : Tahap Stunting <br>
-                                                    *Lingkaran Hijau : Keluar Stunting </h5>
+                                                <h4 class="card-title card-title-dash">Perkembangan Balita
+                                                    {{ $perkembangan->balita->nama_balita }}</h4>
+                                                <h6 class="card-subtitle card-subtitle-dash">
+                                                    <span class="d-flex">
+                                                        <div class="mx-1"
+                                                            style="width: 10px;
+                                                        height: 10px;
+                                                        border-radius: 50%;
+                                                        background-color: #f00; ">
+                                                        </div>
+                                                        Lingkaran Merah : Masuk
+                                                        Stunting 
+                                                    </span>
+                                                    <br>
+                                                    <span class="d-flex">
+                                                        <div class="mx-1"
+                                                            style="width: 10px;
+                                                        height: 10px;
+                                                        border-radius: 50%;
+                                                        background-color: rgb(224, 214, 70); ">
+                                                        </div>
+                                                        Lingkaran Kuning : Tahap Stunting 
+                                                    </span>
+                                                    <br>
+                                                    <span class="d-flex">
+                                                        <div class="mx-1"
+                                                            style="width: 10px;
+                                                        height: 10px;
+                                                        border-radius: 50%;
+                                                        background-color: rgb(12, 214, 19); ">
+                                                        </div>
+                                                        Lingkaran Hijau : Keluar Stunting 
+                                                    </span>
+                                                </h6>
                                             </div>
                                             <div id="performance-line-legend"></div>
                                         </div>

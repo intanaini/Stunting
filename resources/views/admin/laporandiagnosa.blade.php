@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title"></h4>
-                <a href="{{ route('cetaklaporanD',) }}" type="button" class="btn btn-primary mdi mdi-printer"> Cetak Laporan</a>
+                <a href="{{ route('cetaklaporanD',) }}"  target="_blank" class="btn btn-primary mdi mdi-printer"> Cetak Laporan</a>
                 <div class="table-responsive pt-3">
                     <table class="table table-bordered">
                         <thead>

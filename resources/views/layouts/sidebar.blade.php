@@ -155,7 +155,7 @@
           <li class="nav-item nav-category">Menu</li>
           <li class="nav-item">
             <a class="nav-link" href="{{ route('blschat') }}">
-              <i class="mdi mdi-home-map-marker  menu-icon"></i>
+              <i class="mdi mdi-comment-processing menu-icon"></i>
               <span class="menu-title">Chat</span>
             </a>
           </li>

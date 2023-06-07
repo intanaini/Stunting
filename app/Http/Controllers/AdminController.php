@@ -750,7 +750,7 @@ class AdminController extends Controller
     }
     public function dataposyandu()
     {
-        $posyandu = posyandu::all();
+        $posyandu = posyandu::all()->sortBy('nama_posyandu');
         return view('admin.dataposyandu', compact(['posyandu']));
     }
     public function laporandiagnosa()
@@ -765,10 +765,12 @@ class AdminController extends Controller
     }
     public function cetaklaporanD()
     {
-        return view('admin.cetaklaporanD');
+        $diagnosa = diagnosa::all();
+        return view('admin.cetaklaporanD',compact(['diagnosa']));
     }
     public function cetaklaporanP()
     {
-        return view('admin.cetaklaporanP');
+        $perkembangan = perkembangan::all();
+        return view('admin.cetaklaporanP',compact(['perkembangan']));
     }
 }
