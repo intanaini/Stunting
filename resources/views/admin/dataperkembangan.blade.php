@@ -36,12 +36,12 @@
                       {{ $item->balita->nama_balita }}
                     </td>
                     <td class="B-1">
-                      {{-- {{ $item->panjang_badan }} --}}
-                      @foreach ($item->detail->sortBy('created_at') as $key)
+                      {{ $item->panjang_badan }}
+                      {{-- @foreach ($item->detail->sortBy('created_at') as $key)
                           {{ $key->panjang_badan.' cm' }} @if (!$loop->last)
                             -
                           @endif
-                      @endforeach
+                      @endforeach --}}
                     </td>
                     <td>
                       {{ $item->umur }}

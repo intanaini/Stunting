@@ -12,8 +12,7 @@
                         <div class="mb-2">
                                 
                             
-                                <img class="img-fluid rounded mx-auto d-block" src="/images/{{ $info_f->gambar }}"
-                                    alt="">
+                                <img class="img-fluid rounded mx-auto d-block" src="/images/{{ $info_f->gambar }}" alt="" style=" max-height: 500px;">
                            
 
                         </div>
@@ -39,16 +38,15 @@
 
         {{-- @endforeach --}}
 
-
-        <div class="col-12 p-1 d-flex justify-content-between">
+        
             <div class="row">
             @foreach ($info as $item)
 
                 <div class="col-4 p-1 ">
                     <div class="card">
                         <div class="card-body m-2">
-                            <div class="mb-2">
-                                <img class="img-fluid" src="/images/{{ $item->gambar }}" alt="">
+                            <div class="mb-2 text-center">
+                                <img class="img-fluid " src="/images/{{ $item->gambar }}" alt="" style=" max-height: 150px;">
                             </div>
 
                             <div>

@@ -32,4 +32,9 @@ class balita extends Model
     {
         return $this->hasMany(perkembangan::class,'idbalita');
     }
+    public function ortu()
+    {
+        return $this->belongsTo(User::class,'idortu','id_user');
+        # code...
+    }
 }

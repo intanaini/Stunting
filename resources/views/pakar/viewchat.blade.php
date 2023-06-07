@@ -9,7 +9,13 @@
                         style="height: 450px;overflow: scroll;">
                         {{-- <div class="card-title   "></div> --}}
 
-                        @foreach ($pesans as $item)
+                        @foreach ($grup as $keyy => $value)
+                            <div class="text-center">
+                                {{ $keyy }}
+                            </div>
+
+                            {{-- {{ $value }} --}}
+                            @foreach ($value as $item)
                             <div class="row mb-3">
 
 
@@ -27,34 +33,45 @@
                                 <div class="col-10 col-md-10 col-lg-10 col-xl-10 col-sm-10 col-xxl-10 ">
                                     <div class=" d-flex justify-content-between ">
                                         @if ($item->idpenerima == Auth::user()->id_user)
+                                            
                                             <div>
                                                 {{ $item->pengirim->name }}
                                             </div>
-                                            <div>
-                                                {{ $item->tanggal }}
-                                            </div>
                                         @else
-                                            <div>
-                                                {{ $item->tanggal }}
-
-                                            </div>
+                                            <div></div>
                                             <div>
                                                 {{ $item->pengirim->name }}
                                             </div>
                                         @endif
                                     </div>
                                     @if ($item->idpenerima == Auth::user()->id_user)
-                                        <div class="card bg-secondary" style="border-radius: 1px 30px 30px 30px;">
+                                            <div class="card bg-secondary" style="border-radius: 1px 30px 30px 30px;">
+                                                <div class="card-body text-white d-flex justify-content-between ">
+                                                    <p>
+                                                        {{ $item->isi_text }}
+                                                    </p>
+                                                    <div class="mx-2">
+                                                        <small>{{ $item->created_at->format('H:i') }}</small>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
                                         @else
                                             <div class="card  bg-primary" style="border-radius: 30px 1px 30px 30px;">
-                                    @endif
-                                    <div class="card-body text-white ">
-                                        <p>
-                                            {{ $item->isi_text }}
-                                        </p>
+                                                <div class="card-body text-white  d-flex justify-content-between ">
+                                                    <div class="mx-2">
+                                                        <small>{{ $item->created_at->format('H:i') }}</small>
 
-                                    </div>
-                                </div>
+                                                    </div>
+                                                    
+                                                    <p>
+                                                        {{ $item->isi_text }}
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                        @endif
                             </div>
                             <div class="col-1 col-md-1 col-lg-1 col-xl-1 col-sm-1 col-xxl-1 text-center">
                                 @if ($item->idpenerima == Auth::user()->id_user)
@@ -67,6 +84,7 @@
                                 @endif
                             </div>
                     </div>
+                    @endforeach
                     @endforeach
                 </div>
 

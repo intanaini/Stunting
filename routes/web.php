@@ -25,10 +25,12 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 Route::get('/profil', [App\Http\Controllers\ProfilController::class, 'index'])->middleware('auth')->name('profil');
-
+Route::get('/editprofil/{id}', [App\Http\Controllers\ProfilController::class, 'editprofil'])->middleware('auth')->name('edit-profil');
+Route::post('/ubahprofil', [App\Http\Controllers\ProfilController::class, 'updateprofile'])->middleware('auth')->name('update-profil');
 
 Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'hakakses:admin']], function(){
     Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+
     // admin
     Route::get('/dataadmin', [App\Http\Controllers\AdminController::class, 'dataadmin'])->name('dataadmin');
    
@@ -81,7 +83,10 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'hakakses:admin']], func
     // posyandu
     Route::get('/dataposyandu', [App\Http\Controllers\AdminController::class, 'dataposyandu'])->name('dataposyandu');
     // posyandu
-    Route::get('/datalaporan', [App\Http\Controllers\AdminController::class, 'datalaporan'])->name('datalaporan');
+    Route::get('/laporandiagnosa', [App\Http\Controllers\AdminController::class, 'laporandiagnosa'])->name('laporandiagnosa');
+    Route::get('/laporanperkembangan', [App\Http\Controllers\AdminController::class, 'laporanperkembangan'])->name('laporanperkembangan');
+    // Route::get('cetaklaporanD',[App\Http\Controllers\AdminController::class,'cetaklaporanD'])->name('cetaklaporanD');
+    // Route::get('cetaklaporanP',[App\Http\Controllers\AdminController::class,'cetaklaporanP'])->name('cetaklaporanP');
 });
 
 Route::group(['prefix'=>'super', 'middleware'=>['auth', 'hakakses:superadmin']], function(){
@@ -106,15 +111,22 @@ Route::group(['prefix'=>'super', 'middleware'=>['auth', 'hakakses:superadmin']],
     Route::get('/editposyandu/{id}',[SuperAdminController::class,'editdataposyandu'])->name('edit-posyandu');
     Route::post('/ubahposyandu/{id}', [SuperAdminController::class, 'updateposyandu'])-> name('update-posyandu');
     Route::get('/deleteposyandu/{id}',[SuperAdminController::class,'deletedataposyandu'])->name('delete-posyandu');
+    Route::get('/laporandiagnosa', [App\Http\Controllers\AdminController::class, 'laporandiagnosa'])->name('laporanPdiagnosa');
+    Route::get('/laporanperkembangan', [App\Http\Controllers\AdminController::class, 'laporanperkembangan'])->name('laporanPperkembangan');
+    // Route::get('cetaklaporanD',[App\Http\Controllers\AdminController::class,'cetaklaporanD'])->name('cetakSlaporanD');
+    // Route::get('cetaklaporanP',[App\Http\Controllers\AdminController::class,'cetaklaporanP'])->name('cetakSlaporanP');
 });
 
 Route::group(['prefix'=>'pakar', 'middleware'=>['auth', 'hakakses:pakar']], function(){
     Route::get('/dashboard', [App\Http\Controllers\PakarController::class, 'index'])->name('pakar');
     Route::get('/melihatlaporan', [App\Http\Controllers\PakarController::class, 'melihatlaporan'])->name('melihatlaporan');
+    Route::get('/laporandiagnosa', [App\Http\Controllers\AdminController::class, 'laporandiagnosa'])->name('laporanSdiagnosa');
+    Route::get('/laporanperkembangan', [App\Http\Controllers\AdminController::class, 'laporanperkembangan'])->name('laporanSperkembangan');
     Route::get('/blschat', [App\Http\Controllers\PakarController::class, 'blschat'])->name('blschat');
     Route::get('/reload-chat', [App\Http\Controllers\PakarController::class, 'reload_chat'])->name('reload-chat');
     Route::any('/blschat-kirimchat', [App\Http\Controllers\PakarController::class, 'kirimUser'])->name('blschat-pakar');
     Route::get('/viewchat/{id}', [App\Http\Controllers\PakarController::class, 'viewchat'])->name('viewchat');
+   
 });
 
 Route::group(['prefix'=>'pengguna', 'middleware'=>['auth', 'hakakses:pengguna']], function(){
@@ -126,8 +138,14 @@ Route::group(['prefix'=>'pengguna', 'middleware'=>['auth', 'hakakses:pengguna']]
     Route::get('/lhtperkembangan', [App\Http\Controllers\PenggunaController::class, 'lhtperkembangan'])->name('lhtperkembangan');
     Route::get('/informasi', [App\Http\Controllers\PenggunaController::class, 'informasi'])->name('informasi');
     Route::get('/lihat-informasi/{id}', [App\Http\Controllers\PenggunaController::class, 'viewinfo'])->name('viewinfo');
+   
     Route::get('/viewperkembangan/{id}', [App\Http\Controllers\AdminController::class, 'viewperkembangan'])->name('viewperkembangan-user');
+});
 
+
+Route::group(['middleware'=>['auth','hakakses:pakar,admin,superadmin']],function(){
+    Route::get('cetaklaporanD',[App\Http\Controllers\AdminController::class,'cetaklaporanD'])->name('cetaklaporanD');
+    Route::get('cetaklaporanP',[App\Http\Controllers\AdminController::class,'cetaklaporanP'])->name('cetaklaporanP');
 });
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Route::get('/hasilS', function () {
@@ -136,7 +154,7 @@ Route::group(['prefix'=>'pengguna', 'middleware'=>['auth', 'hakakses:pengguna']]
 // Route::get('/hasilTS', function () {
 //     return view('admin.hasildiagnosaTS');
 // });
-// Route::get('/hasilUL', function () {
-//     return view('admin.hasildiagnosaUL');
+Route::get('/aktivasi', function () {
+    return view('/auth.aktivasi');
 
-// });
+});

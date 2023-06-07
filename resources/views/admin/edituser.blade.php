@@ -7,7 +7,7 @@
                 <div class="col-12  stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Edit User</h4>
+                            <h4 class="card-title">Edit Pengguna</h4>
                             <form method="POST" action="{{ route('update-user', $admin->id_user) }}">
                                 @csrf
                                 <div class="form-group">

@@ -2,25 +2,75 @@
 
 @section('Isi')
 <div class="continer-fluid mt-3 mx-3">
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-md-12">
             <h2>Hallo, Selamat Datang di Sistem Pakar Penentuan Balita Stunting!!!</h2>
         </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-lg-4 d-flex flex-column mb-2">
+        <div class="card bg-primary card-rounded">
+          <div class="card-body pb-0">
+            <h4 class="card-title mb-2 card-title-dash text-white ">Jumlah Balita</h4>
+            <h2 class="text-white mb-4">{{ $jb }}</h2>
+          </div>
+        </div>
+        
+      </div>
+      <div class="col-lg-4 d-flex flex-column mb-2">
+        <div class="card bg-warning card-rounded">
+          <div class="card-body pb-0">
+            <h4 class="card-title mb-2 card-title-dash text-white ">Jumlah Penguna</h4>
+            <h2 class="text-white mb-4">{{ $jp }}</h2>
+          </div>
+        </div>
+        
+      </div>
+      <div class="col-lg-4 d-flex flex-column mb-2">
+        <div class="card bg-success card-rounded">
+          <div class="card-body pb-0">
+            <h4 class="card-title mb-2 card-title-dash text-white ">Jumlah Diagnosa</h4>
+            <h2 class="text-white mb-4">{{ $jd }}</h2>
+          </div>
+        </div>
+        
+      </div>
+       
+     
     </div>
 
           <div class="row">
             <div class="col-sm-12">
               <div class="home-tab">
                     <div class="row">
-                      <div class="col-lg-8 d-flex flex-column">
+                      <div class="col-lg-3 d-flex flex-column">
+                        <div class="row flex-grow">
+                            <div class="col-12 grid-margin stretch-card">
+                              <div class="card card-rounded">
+                                <div class="card-body">
+                                  <div class="row">
+                                    <div class="col-lg-12">
+                                      <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h4 class="card-title card-title-dash">Total Data Stunting  </h4>
+                                      </div>
+                                      <canvas class="my-auto" id="doughnutChart" height="200"></canvas>
+                                      <div id="doughnut-chart-legend" class="mt-5 text-center"></div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                      </div>                      
+                    </div>
+                      <div class="col-lg-9 d-flex flex-column">
                         <div class="row flex-grow">
                           <div class="col-12 col-lg-4 col-lg-12 grid-margin stretch-card">
                             <div class="card card-rounded">
                               <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-start">
                                   <div>
-                                   <h4 class="card-title card-title-dash">Performance Line Chart</h4>
-                                   <h5 class="card-subtitle card-subtitle-dash">Lorem Ipsum is simply dummy text of the printing</h5>
+                                   <h4 class="card-title card-title-dash">Data Balita Stunting Tahun {{ date('Y') }}  </h4>
+                                   {{-- <h5 class="card-subtitle card-subtitle-dash">Lorem Ipsum is simply dummy text of the printing</h5> --}}
                                   </div>
                                   <div id="performance-line-legend"></div>
                                 </div>
@@ -32,158 +82,20 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-lg-4 d-flex flex-column">
-                        <div class="row flex-grow">
-                            <div class="col-12 grid-margin stretch-card">
-                              <div class="card card-rounded">
-                                <div class="card-body">
-                                  <div class="row">
-                                    <div class="col-lg-12">
-                                      <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <h4 class="card-title card-title-dash">Type By Amount</h4>
-                                      </div>
-                                      <canvas class="my-auto" id="doughnutChart" height="200"></canvas>
-                                      <div id="doughnut-chart-legend" class="mt-5 text-center"></div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                      </div>                      
+                      
+                      
                     </div>
-                    <div class="row">
-                      <div class="col-lg-8 d-flex flex-column">
-                        <div class="row flex-grow">
-                          <div class="col-12 grid-margin stretch-card">
-                            <div class="card card-rounded">
-                              <div class="card-body">
-                                <div class="d-sm-flex justify-content-between align-items-start">
-                                  <div>
-                                    <h4 class="card-title card-title-dash">Market Overview</h4>
-                                   <p class="card-subtitle card-subtitle-dash">Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                                  </div>
-                                  <div>
-                                    <div class="dropdown">
-                                      <button class="btn btn-secondary dropdown-toggle toggle-dark btn-lg mb-0 me-0" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> This month </button>
-                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                        <h6 class="dropdown-header">Settings</h6>
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Separated link</a>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="d-sm-flex align-items-center mt-1 justify-content-between">
-                                  <div class="d-sm-flex align-items-center mt-4 justify-content-between"><h2 class="me-2 fw-bold">$36,2531.00</h2><h4 class="me-2">USD</h4><h4 class="text-success">(+1.37%)</h4></div>
-                                  <div class="me-3"><div id="marketing-overview-legend"></div></div>
-                                </div>
-                                <div class="chartjs-bar-wrapper mt-3">
-                                  <canvas id="marketingOverview"></canvas>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row flex-grow">
+                      
+                      
                         
-                        </div>
-                      </div>
-                      <div class="col-lg-4 d-flex flex-column">
-                        <div class="row flex-grow">
-                          
-                          </div>
-                        </div>
-                        
-                      </div>
-                    </div>
+                    {{-- </div> --}}
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-    {{-- <div class="row">
-        <div class="col-lg-8 d-flex flex-column">
-          <div class="row flex-grow">
-            <div class="col-12 col-lg-4 col-lg-12 grid-margin stretch-card">
-              <div class="card card-rounded">
-                <div class="card-body">
-                  <div class="d-sm-flex justify-content-between align-items-start">
-                    <div>
-                     <h4 class="card-title card-title-dash">Performance Line Chart</h4>
-                     <h5 class="card-subtitle card-subtitle-dash">Lorem Ipsum is simply dummy text of the printing</h5>
-                    </div>
-                    <div id="performance-line-legend"></div>
-                  </div>
-                  <div class="chartjs-wrapper mt-5">
-                    <canvas id="performaneLine"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 d-flex flex-column">
-          <div class="row flex-grow">
-            <div class="col-md-6 col-lg-12 grid-margin stretch-card">
-              <div class="card card-rounded">
-                <div class="card-body">
-                    <div class="row">
-                      <div class="col-lg-11">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                          <h4 class="card-title card-title-dash">Type By Amount</h4>
-                        </div>
-                        <canvas class="my-auto" id="doughnutChart" height="200"></canvas>
-                        <div id="doughnut-chart-legend" class="mt-5 text-center"></div>
-                      </div>
-                    </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-8 d-flex flex-column">
-          <div class="row flex-grow">
-            <div class="col-12 grid-margin stretch-card">
-              <div class="card card-rounded">
-                <div class="card-body">
-                  <div class="d-sm-flex justify-content-between align-items-start">
-                    <div>
-                      <h4 class="card-title card-title-dash">Market Overview</h4>
-                     <p class="card-subtitle card-subtitle-dash">Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                    </div>
-                    <div>
-                      <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle toggle-dark btn-lg mb-0 me-0" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> This month </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="d-sm-flex align-items-center mt-1 justify-content-between">
-                    <div class="d-sm-flex align-items-center mt-4 justify-content-between"><h2 class="me-2 fw-bold">$36,2531.00</h2><h4 class="me-2">USD</h4><h4 class="text-success">(+1.37%)</h4></div>
-                    <div class="me-3"><div id="marketing-overview-legend"></div></div>
-                  </div>
-                  <div class="chartjs-bar-wrapper mt-3">
-                    <canvas id="marketingOverview"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-        </div> --}}
-       
+  
 @endsection
 @push('js')
     <script>
@@ -292,10 +204,10 @@
       saleGradientBg2.addColorStop(0, 'rgba(0, 208, 255, 0.19)');
       saleGradientBg2.addColorStop(1, 'rgba(0, 208, 255, 0.03)');
       var salesTopData = {
-          labels: ["SUN","sun", "MON", "mon", "TUE","tue", "WED", "wed", "THU", "thu", "FRI", "fri", "SAT"],
+          labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
           datasets: [{
-              label: 'This week',
-              data: [50, 110, 60, 290, 200, 115, 130, 170, 90, 210, 240, 280, 200],
+              label: 'Balita Stunting',
+              data: @json($dataStunting),
               backgroundColor: saleGradientBg,
               borderColor: [
                   '#1F3BB3',
@@ -305,11 +217,11 @@
               pointBorderWidth: 1,
               pointRadius: [4, 4, 4, 4, 4,4, 4, 4, 4, 4,4, 4, 4],
               pointHoverRadius: [2, 2, 2, 2, 2,2, 2, 2, 2, 2,2, 2, 2],
-              pointBackgroundColor: ['#1F3BB3)', '#1F3BB3', '#1F3BB3', '#1F3BB3','#1F3BB3)', '#1F3BB3', '#1F3BB3', '#1F3BB3','#1F3BB3)', '#1F3BB3', '#1F3BB3', '#1F3BB3','#1F3BB3)'],
+              pointBackgroundColor: ['#1F3BB3', '#1F3BB3', '#1F3BB3', '#1F3BB3','#1F3BB3', '#1F3BB3', '#1F3BB3', '#1F3BB3','#1F3BB3', '#1F3BB3', '#1F3BB3', '#1F3BB3','#1F3BB3'],
               pointBorderColor: ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff',],
           },{
-            label: 'Last week',
-            data: [30, 150, 190, 250, 120, 150, 130, 20, 30, 15, 40, 95, 180],
+            label: 'Balita Tidak Stunting',
+            data: @json($dataTDKStunting),
             backgroundColor: saleGradientBg2,
             borderColor: [
                 '#52CDFF',
@@ -317,9 +229,9 @@
             borderWidth: 1.5,
             fill: true, // 3: no fill
             pointBorderWidth: 1,
-            pointRadius: [0, 0, 0, 4, 0],
-            pointHoverRadius: [0, 0, 0, 2, 0],
-            pointBackgroundColor: ['#52CDFF)', '#52CDFF', '#52CDFF', '#52CDFF','#52CDFF)', '#52CDFF', '#52CDFF', '#52CDFF','#52CDFF)', '#52CDFF', '#52CDFF', '#52CDFF','#52CDFF)'],
+            pointRadius: [4, 4, 4, 4, 4,4, 4, 4, 4, 4,4, 4, 4],
+              pointHoverRadius: [2, 2, 2, 2, 2,2, 2, 2, 2, 2,2, 2, 2],
+            pointBackgroundColor: ['#52CDFF', '#52CDFF', '#52CDFF', '#52CDFF','#52CDFF', '#52CDFF', '#52CDFF', '#52CDFF','#52CDFF', '#52CDFF', '#52CDFF', '#52CDFF','#52CDFF'],
               pointBorderColor: ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff',],
         }]
       };
@@ -350,7 +262,7 @@
                 },
                 ticks: {
                   beginAtZero: false,
-                  autoSkip: true,
+                  autoSkip: false,
                   maxTicksLimit: 7,
                   fontSize: 10,
                   color:"#6B778C"
@@ -395,27 +307,27 @@
       var doughnutChartCanvas = $("#doughnutChart").get(0).getContext("2d");
       var doughnutPieData = {
         datasets: [{
-          data: [40, 20, 30, 10],
+          data: @json($totaldata),
           backgroundColor: [
             "#1F3BB3",
             "#FDD0C7",
-            "#52CDFF",
-            "#81DADA"
+            // "#52CDFF",
+            // "#81DADA"
           ],
           borderColor: [
             "#1F3BB3",
             "#FDD0C7",
-            "#52CDFF",
-            "#81DADA"
+            // "#52CDFF",
+            // "#81DADA"
           ],
         }],
   
         // These labels appear in the legend and in the tooltips when hovering different arcs
         labels: [
-          'Total',
-          'Net',
-          'Gross',
-          'AVG',
+          'Stunting',
+          'Tidak Stunting',
+          // 'Gross',
+          // 'AVG',
         ]
       };
       var doughnutPieOptions = {

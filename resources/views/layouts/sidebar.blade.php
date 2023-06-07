@@ -41,7 +41,7 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ route('datainformasi') }}">
           <i class="mdi mdi-alert menu-icon"></i>
-          <span class="menu-title">Aturan Informasi</span>
+          <span class="menu-title">Informasi</span>
         </a>
       </li>
       <li class="nav-item">
@@ -69,10 +69,17 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('datalaporan') }}">
-          <i class="mdi mdi-clipboard-text menu-icon"></i>
+        <a class="nav-link" data-bs-toggle="collapse" href="#for" aria-expanded="false" aria-controls="for">
+          <i class="menu-icon mdi mdi-clipboard-text menu-icon"></i>
           <span class="menu-title">Laporan</span>
+          <i class="menu-arrow"></i>
         </a>
+        <div class="collapse" id="for">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"><a class="nav-link" href="{{ route('laporandiagnosa') }}">Laporan Diagnosa</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('laporanperkembangan') }}">Laporan Perkembangan</a></li>
+          </ul>
+        </div>
       </li>
     </ul>
   </nav>
@@ -93,17 +100,44 @@
           <span class="menu-title">Mengelola Data Posyandu</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+      {{-- <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="#form-elements">
           <i class="menu-icon mdi mdi-floor-plan"></i>
           <span class="menu-title">Master Data</span>
           <i class="menu-arrow"></i> 
         </a>
-        <div class="collapse" id="ui-basic">
+        <div class="collapse" id="#form-elements">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ route('dataSadmin') }}">Data Admin</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ route('dataSuser') }}">Data Pengguna</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ route('dataSbalita') }}">Data Balita</a></li>
+          </ul>
+        </div>
+      </li> --}}
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#fo" aria-expanded="false" aria-controls="fo">
+          <i class="menu-icon mdi mdi-floor-plan"></i>
+          <span class="menu-title">Master Data</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="fo">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"><a class="nav-link" href="{{ route('dataSadmin') }}">Data Admin</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('dataSuser') }}">Data Pengguna</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('dataSbalita') }}">Data Balita</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#for" aria-expanded="false" aria-controls="for">
+          <i class="menu-icon mdi mdi-clipboard-text menu-icon"></i>
+          <span class="menu-title">Laporan</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="for">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"><a class="nav-link" href="{{ route('laporanPdiagnosa') }}">Laporan Diagnosa</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('laporanPperkembangan') }}">Laporan Perkembangan</a></li>
           </ul>
         </div>
       </li>
@@ -121,16 +155,25 @@
           <li class="nav-item nav-category">Menu</li>
           <li class="nav-item">
             <a class="nav-link" href="{{ route('blschat') }}">
-              <i class="mdi mdi-home-map-marker  menu-icon"></i>
+              <i class="mdi mdi-comment-processing menu-icon"></i>
               <span class="menu-title">Chat</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('melihatlaporan') }}">
-              <i class="mdi mdi-clipboard-text menu-icon"></i>
+            <a class="nav-link" data-bs-toggle="collapse" href="#for" aria-expanded="false" aria-controls="for">
+              <i class="menu-icon mdi mdi-clipboard-text menu-icon"></i>
               <span class="menu-title">Laporan</span>
+              <i class="menu-arrow"></i>
             </a>
+            <div class="collapse" id="for">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="{{ route('laporanSdiagnosa') }}">Laporan Diagnosa</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('laporanSperkembangan') }}">Laporan Perkembangan</a></li>
+              </ul>
+            </div>
           </li>
+        </ul>
+      </nav>
     </ul>
   </nav>
   @elseif (Auth::user()->role== 'pengguna')

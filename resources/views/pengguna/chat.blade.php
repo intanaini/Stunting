@@ -9,66 +9,80 @@
                         style="height: 450px;overflow: scroll;">
                         {{-- <div class="card-title   "></div> --}}
 
-                        @foreach ($pesans as $item)
-                            <div class="row mb-3">
+                        @foreach ($grup as $keyy => $value)
+                            <div class="text-center">
+                                {{ $keyy }}
+                            </div>
+
+                            {{-- {{ $value }} --}}
+                            @foreach ($value as $item)
+                                <div class="row mb-3">
 
 
-                                <div class="col-1 col-md-1 col-lg-1 col-xl-1 col-sm-1 col-xxl-1 text-center ">
-                                    @if ($item->idpenerima == Auth::user()->id_user)
-                                        <div class="align-items-center justify-content-between">
-                                            <img class="img rounded-circle "
-                                                src="{{ is_null($item->gambar) ? '/disk/images/faces/face8.jpg' : asset('/disk/images/faces/face8.jpg') }}"
-                                                alt="">
-                                        </div>
-                                    @else
-                                    @endif
-                                    {{-- <img class="img rounded-circle" src="/disk/images/faces/face8.jpg" alt="Profile image"> --}}
-                                </div>
-                                <div class="col-10 col-md-10 col-lg-10 col-xl-10 col-sm-10 col-xxl-10 ">
-                                    <div class=" d-flex justify-content-between ">
+                                    <div class="col-2 col-md-1 col-lg-1 col-xl-1 col-sm-2 col-xxl-1 text-center ">
                                         @if ($item->idpenerima == Auth::user()->id_user)
-                                        <div>
-                                            {{ $item->pengirim->name }}
-                                        </div>
-                                        <div>
-                                           {{ $item->tanggal }}
-                                        </div>
+                                            <div class="align-items-center justify-content-between">
+                                                <img class="img rounded-circle "
+                                                    src="{{ is_null($item->gambar) ? '/disk/images/faces/face8.jpg' : asset('/disk/images/faces/face8.jpg') }}"
+                                                    alt="">
+                                            </div>
                                         @else
-                                        <div>
-                                            {{ $item->tanggal }}
-
-                                        </div>
-                                        <div>
-                                            {{ $item->pengirim->name }}
-                                        </div>
                                         @endif
                                     </div>
-                                    @if ($item->idpenerima == Auth::user()->id_user)
-                                    
-                                    <div class="card bg-secondary" style="border-radius: 1px 30px 30px 30px;">
-                                        @else
-                                        <div class="card  bg-primary" style="border-radius: 30px 1px 30px 30px;">
-                                        
-                                    @endif
-                                        <div class="card-body text-white ">
-                                            <p>
-                                                {{ $item->isi_text }}
-                                            </p>
-
+                                    <div class="col-8 col-md-10 col-lg-10 col-xl-10 col-sm-8 col-xxl-10 ">
+                                        <div class=" d-flex justify-content-between ">
+                                            @if ($item->idpenerima == Auth::user()->id_user)
+                                                <div>
+                                                    <h5>{{ $item->pengirim->name }}</h5>
+                                                </div>
+                                            @else
+                                                <div>
+                                                    <h5>{{ $item->pengirim->name }}</h5>
+                                                </div>
+                                            @endif
                                         </div>
+                                        @if ($item->idpenerima == Auth::user()->id_user)
+                                            <div class="card bg-secondary" style="border-radius: 1px 30px 30px 30px;">
+                                                <div class="card-body text-white d-flex justify-content-between ">
+                                                    <p>
+                                                        {{ $item->isi_text }}
+                                                    </p>
+                                                    <div class="mx-2">
+                                                        <small>{{ $item->created_at->format('H:i') }}</small>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="card  bg-primary" style="border-radius: 30px 1px 30px 30px;">
+                                                <div class="card-body text-white  d-flex justify-content-between ">
+                                                    <div class="mx-2">
+                                                        <small>{{ $item->created_at->format('H:i') }}</small>
+
+                                                    </div>
+                                                    
+                                                    <p>
+                                                        {{ $item->isi_text }}
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                        @endif
+
+                                    </div>
+                                    <div class="col-2 col-md-1 col-lg-1 col-xl-1 col-sm-2 col-xxl-1  ">
+                                        @if ($item->idpenerima == Auth::user()->id_user)
+                                        @else
+                                            <div class=" justify-content-between">
+                                                <img class="img rounded-circle "
+                                                    src="{{ is_null($item->gambar) ? '/disk/images/faces/face8.jpg' : asset('/disk/images/faces/face8.jpg') }}"
+                                                    alt="">
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="col-1 col-md-1 col-lg-1 col-xl-1 col-sm-1 col-xxl-1 text-center">
-                                    @if ($item->idpenerima == Auth::user()->id_user)
-                                    @else
-                                    <div class="align-items-center justify-content-between">
-                                        <img class="img rounded-circle "
-                                            src="{{ is_null($item->gambar) ? '/disk/images/faces/face8.jpg' : asset('/disk/images/faces/face8.jpg') }}"
-                                            alt="">
-                                    </div>
-                                @endif
-                                </div>
-                            </div>
+                            @endforeach
                         @endforeach
                         {{-- <div class="row mb-3">
 
@@ -164,31 +178,30 @@
             div.scrollTop = div.scrollHeight;
         };
     </script>
-  
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
-    var initialDataCount = {!! $initialDataCount !!};
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    function checkForUpdates() {
-        $.ajax({
-            url: '/pengguna/reload-chat',
-            method: 'GET',
-            dataType: 'json',
-            success: function (response) {
-                // Compare the response with the current data count
-                // If the response data count is greater than the initial data count, reload the page
+    <script>
+        var initialDataCount = {!! $initialDataCount !!};
 
-                if (response.length > initialDataCount) {
-                    location.reload();
+        function checkForUpdates() {
+            $.ajax({
+                url: '/pengguna/reload-chat',
+                method: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    // Compare the response with the current data count
+                    // If the response data count is greater than the initial data count, reload the page
+
+                    if (response.length > initialDataCount) {
+                        location.reload();
+                    }
                 }
-            }
-        });
-    }
+            });
+        }
 
-    // Call the checkForUpdates function every 5 seconds
-    setInterval(checkForUpdates, 5000);
-</script>
-
+        // Call the checkForUpdates function every 5 seconds
+        setInterval(checkForUpdates, 5000);
+    </script>
 @endpush

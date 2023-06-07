@@ -4,8 +4,8 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Tabel User</h4>
-            <a href="{{ route('tambah-user') }}" class="btn btn-primary btn-rounded btn-fw">Tambah User</a>
+            <h4 class="card-title">Tabel Pengguna</h4>
+            <a href="{{ route('tambah-user') }}" class="btn btn-primary btn-rounded btn-fw">Tambah Pengguna</a>
             <div class="table-responsive">
               <table class="table table-striped">
                 <thead>
@@ -25,8 +25,8 @@
                     <th>
                       Posyandu
                     </th>
-                    <th>
-                      aksi
+                    <th class="text-center">
+                      Aksi
                     </th>
                   </tr>
                 </thead>
@@ -36,7 +36,7 @@
                       
                   <tr>
                     <td class="py-1">
-                      {{ $item->nik }}
+                      {{ '*************'.substr($item->nik,-5) }}
                     </td>
                     <td>
                       {{ $item->name }}
@@ -52,7 +52,7 @@
                     <td>
                       {{ $item->posyandu->nama_posyandu }}
                     </td>
-                    <td>
+                    <td class="text-center">
                       <a href="{{ route('edit-user',$item->id_user) }}" class="btn btn-primary btn-rounded btn-fw">Edit</a>
                       <a href="{{ route('delete-user', $item->id_user) }}" class="btn btn-danger btn-rounded btn-fw">Delete</a>
                     </td>

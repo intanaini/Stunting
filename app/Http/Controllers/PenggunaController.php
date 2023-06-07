@@ -20,9 +20,27 @@ class PenggunaController extends Controller
     }
     public function chat()
     {
+        $sekarang = Carbon::now()->format('Y-m-d');
+        $kemarin = Carbon::yesterday()->format('Y-m-d');
         $pesans = chat::orWhere('idpengirim', Auth::user()->id_user)->orWhere('idpenerima', Auth::user()->id_user)->orderBy('created_at', 'ASC')->get();
         $initialDataCount = chat::count();
-        return view('pengguna.chat', compact(['pesans','initialDataCount']));
+        $grup = $pesans->groupBy(function ($item) {
+            $date = Carbon::parse($item->created_at)->format('Y-m-d');
+            $sekarang = Carbon::now()->format('Y-m-d');
+            $kemarin = Carbon::yesterday()->format('Y-m-d');
+            if ($date == $sekarang) {
+                return 'Hari ini';
+                # code...
+            } elseif ($date == $kemarin) {
+                return 'Kemarin';
+            } else {
+
+                return date('d F', strtotime($item->created_at));
+            }
+        });
+        $uniq = $grup->keys();
+        // dd($grup);
+        return view('pengguna.chat', compact(['pesans', 'initialDataCount','grup']));
     }
     public function reloadchat()
     {
@@ -59,14 +77,16 @@ class PenggunaController extends Controller
     }
     public function insertdatabalita(Request $request)
     {
+        // dd($request);
         $this->validate($request, [
             'nik' => 'required',
             'nama_balita' => 'required',
             'jenis_kelamin' => 'required',
-            'tempat_lahir' => 'required|min:8',
+            'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'orang_tua' => 'required'
         ]);
+
         $ids = 'balita-' . Str::random(8);
         // $request->merge(['password' => Hash::make($request->input('password'))]);
         $balita = balita::create([
@@ -78,6 +98,7 @@ class PenggunaController extends Controller
             'tempat_lahir'   => $request->tempat_lahir,
             'tanggal_lahir'   => $request->tanggal_lahir
         ]);
+        // dd($balita);
 
         if ($balita) {
             return redirect()->route('databalita')->with('success', 'Data berhasil di tambahkan');
@@ -85,6 +106,7 @@ class PenggunaController extends Controller
             return redirect()->route('databalita')->with('failed', 'Data gagal di tambahkan');
         }
     }
+
     public function editdatabalita($idbalita)
     {
         $balita = balita::where('idbalita', $idbalita)->first();
