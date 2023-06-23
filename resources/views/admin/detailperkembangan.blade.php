@@ -18,46 +18,57 @@
                             <div class="col-12 col-lg-12 col-lg-12 grid-margin stretch-card">
                                 <div class="card card-rounded">
                                     <div>
-
-
                                     </div>
                                     <div class="card-body">
-                                        <div class="d-sm-flex justify-content-between align-items-start">
-                                            <div>
-                                                <h4 class="card-title card-title-dash">Perkembangan Balita
-                                                    {{ $perkembangan->balita->nama_balita }}</h4>
-                                                <h6 class="card-subtitle card-subtitle-dash">
-                                                    <span class="d-flex">
-                                                        <div class="mx-1"
-                                                            style="width: 10px;
+                                        <div class="align-items-start">
+                                            <h4 class="card-title card-title-dash">Perkembangan Balita
+                                            </h4>
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <div>{{ $perkembangan->balita->nama_balita }}</div>
+                                                    <div> {{ $perkembangan->balita->jenis_kelamin }}</div>
+                                                    @php
+                                                        use Carbon\Carbon;
+                                                    @endphp
+                                                    <div> 
+                                                        {{ Carbon::parse($perkembangan->balita->tanggal_lahir)->diffInMonths() }} Bulan
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <h6>Keterangan:</h6>
+                                                    <h6 class="card-subtitle card-subtitle-dash">
+                                                        <span class="d-flex">
+                                                            <div class="mx-1"
+                                                                style="width: 10px;
                                                         height: 10px;
                                                         border-radius: 50%;
                                                         background-color: #f00; ">
-                                                        </div>
-                                                        Lingkaran Merah : Masuk
-                                                        Stunting 
-                                                    </span>
-                                                    <br>
-                                                    <span class="d-flex">
-                                                        <div class="mx-1"
-                                                            style="width: 10px;
+                                                            </div>
+                                                            Lingkaran Merah : Masuk
+                                                            Stunting
+                                                        </span>
+                                                        <br>
+                                                        <span class="d-flex">
+                                                            <div class="mx-1"
+                                                                style="width: 10px;
                                                         height: 10px;
                                                         border-radius: 50%;
                                                         background-color: rgb(224, 214, 70); ">
-                                                        </div>
-                                                        Lingkaran Kuning : Tahap Stunting 
-                                                    </span>
-                                                    <br>
-                                                    <span class="d-flex">
-                                                        <div class="mx-1"
-                                                            style="width: 10px;
+                                                            </div>
+                                                            Lingkaran Kuning : Tahap Stunting
+                                                        </span>
+                                                        <br>
+                                                        <span class="d-flex">
+                                                            <div class="mx-1"
+                                                                style="width: 10px;
                                                         height: 10px;
                                                         border-radius: 50%;
                                                         background-color: rgb(12, 214, 19); ">
-                                                        </div>
-                                                        Lingkaran Hijau : Keluar Stunting 
-                                                    </span>
-                                                </h6>
+                                                            </div>
+                                                            Lingkaran Hijau : Keluar Stunting
+                                                        </span>
+                                                    </h6>
+                                                </div>
                                             </div>
                                             <div id="performance-line-legend"></div>
                                         </div>

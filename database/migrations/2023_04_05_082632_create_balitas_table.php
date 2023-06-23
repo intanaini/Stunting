@@ -14,12 +14,12 @@ class CreateBalitasTable extends Migration
     public function up()
     {
         Schema::create('balitas', function (Blueprint $table) {
-            $table->string('idbalita')->primary();
-            $table->string('nik')->unique();
+            $table->string('idbalita',20)->primary();
+            $table->string('nik',18)->unique();
             $table->string('idortu');
-            $table->string('nama_balita');
-            $table->string('jenis_kelamin');
-            $table->string('tempat_lahir');
+            $table->string('nama_balita',60);
+            $table->string('jenis_kelamin',15);
+            $table->string('tempat_lahir',10);
             $table->dateTime('tanggal_lahir');
             $table->foreign('idortu')->references('id_user')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

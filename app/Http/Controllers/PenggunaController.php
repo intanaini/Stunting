@@ -66,7 +66,8 @@ class PenggunaController extends Controller
     }
     public function balita()
     {
-        $balita = balita::all();
+        $data = User::where('idposyandu', Auth::user()->idposyandu)->pluck('id_user')->toArray();
+        $balita = balita::whereIn('idortu', $data)->get();
         return view('pengguna.balita', compact(['balita']));
     }
     public function tambahdatabalita()
@@ -120,7 +121,7 @@ class PenggunaController extends Controller
             'nik' => 'required',
             'nama_balita' => 'required',
             'jenis_kelamin' => 'required',
-            'tempat_lahir' => 'required|min:8',
+            'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'orang_tua' => 'required'
         ]);

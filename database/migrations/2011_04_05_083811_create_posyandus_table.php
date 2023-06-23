@@ -14,10 +14,10 @@ class CreatePosyandusTable extends Migration
     public function up()
     {
         Schema::create('posyandus', function (Blueprint $table) {
-            $table->string('idposyandu')->primary();
-            $table->string('nama_posyandu');
-            $table->string('alamat_posyandu');
-            $table->string('jadwal_posyandu');
+            $table->string('idposyandu',8)->primary();
+            $table->string('nama_posyandu',30);
+            $table->string('alamat_posyandu',15);
+            $table->string('jadwal_posyandu',);
             $table->timestamps();
         });
     }

@@ -50,7 +50,7 @@
 
                     </td>
                     <td>
-                      {{ $item->posyandu->nama_posyandu }}
+                      {{ $item->posyandu->nama_posyandu ?? '' }}
                     </td>
                     {{-- <td>
                       <a href="{{ route('editS-user',$item->id_user) }}" class="btn btn-primary btn-rounded btn-fw">Edit</a>
@@ -61,6 +61,7 @@
                  
                 </tbody>
               </table>
+              {{ $user->links('vendor.pagination.bootstrap-4') }}
             </div>
           </div>
         </div>

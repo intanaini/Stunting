@@ -14,10 +14,10 @@ class CreateAturansTable extends Migration
     public function up()
     {
         Schema::create('aturans', function (Blueprint $table) {
-            $table->string('idaturan')->primary();
+            $table->string('idaturan',8)->primary();
             $table->enum('jenis_kelamin', ['laki-laki','perempuan']);
-            $table->string('umur');
-            $table->string('panjang_badan');
+            $table->string('umur',5);
+            $table->string('panjang_badan',5);
             $table->enum('penyakit', ['stunting','tidak stunting']);
             $table->timestamps();
         });

@@ -56,14 +56,38 @@ class SuperAdminController extends Controller
     {
         return view('superadmin.datauser');
     }
-    public function databalita()
-    {
-        $user = balita::all();
+    public function databalita(Request $request)
+    {   
+        $searchTerm = $request->input('q');
+
+        $query = balita::query();
+
+        if ($searchTerm) {
+            $query->where('nama_balita', 'LIKE', "%$searchTerm%")
+                ->orWhere('jenis_kelamin', 'LIKE', "%$searchTerm%")
+                ->orWhere('tempat_lahir', 'LIKE', "%$searchTerm%")
+                ->orWhere('tanggal_lahir', 'LIKE', "%$searchTerm%")
+                ->orWhereHas('ortu.posyandu', function ($q) use ($searchTerm) {
+                    $q->where('nama_posyandu', 'LIKE', "%$searchTerm%");
+                });
+        }
+
+        $user = $query->paginate(30);
+
         return view('superadmin.databalita', compact('user'));
+    }
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('q');
+
+        $results = balita::where('nama_balita', 'LIKE', "%$searchTerm%")
+            ->get();
+        return view('superadmin.databalita', ['user' => $results]);
     }
     public function mengeloladataposyandu()
     {
-        $posyandu = posyandu::all()->sortBy('nama_posyandu');
+        $posyandu = posyandu::orderBy('nama_posyandu')->paginate(10);
+
         return view('superadmin.mengeloladataposyandu', compact('posyandu'));
     }
     public function tambahdataposyandu()

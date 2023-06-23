@@ -40,7 +40,7 @@ class User extends Authenticatable
         'remember_token',
     ];
     protected $keyType = 'string';
- 
+
     public $incrementing = false;
     /**
      * The attributes that should be cast.
@@ -49,17 +49,21 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'id_user'=> 'string',
+        'id_user' => 'string',
     ];
 
     public function posyandu()
     {
-    //  idposyandu pertama dari penamaan database disini, idposyandu setelah koma dari database asli posyandu
-     return $this->belongsTo(posyandu::class,'idposyandu','idposyandu');
+        //  idposyandu pertama dari penamaan database disini, idposyandu setelah koma dari database asli posyandu
+        return $this->belongsTo(posyandu::class, 'idposyandu', 'idposyandu');
     }
 
-    public function balita( )
+    public function balita()
     {
-        return $this->hasMany(balita::class,'idortu');
+        return $this->hasMany(balita::class, 'idortu');
+    }
+    public function aktif()
+    {
+        return $this->hasMany(aktivasi::class, 'id_user');
     }
 }

@@ -14,11 +14,11 @@ class CreateChatsTable extends Migration
     public function up()
     {
         Schema::create('chats', function (Blueprint $table) {
-            $table->string('idchat')->primary();
+            $table->string('idchat',20)->primary();
             $table->string('idpengirim');
             $table->string('idpenerima');
             $table->longText('isi_text');
-            $table->string('pakar');
+            $table->string('pakar',8);
             $table->dateTime('tanggal');
             $table->foreign('idpengirim')->references('id_user')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('idpenerima')->references('id_user')->on('users')->onUpdate('cascade')->onDelete('cascade');
