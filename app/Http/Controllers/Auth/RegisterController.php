@@ -60,9 +60,9 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'no_hp' => ['required', 'numeric'],
             'nik' => ['required', 'numeric', 'unique:users'],
-            'posyandu'=> ['required']
+            'posyandu' => ['required']
 
-        ],[
+        ], [
             'name.required' => 'Kolom nama harus diisi.',
             'name.string' => 'Kolom nama harus berupa teks.',
             'name.max' => 'Kolom nama tidak boleh lebih dari :max karakter.',
@@ -115,7 +115,7 @@ class RegisterController extends Controller
             ]
         );
 
-        $pesan = 'Kode Aktivasi Anda Adalah *' . $otp . '*';
+        $pesan = 'Kode Aktivasi Anda Adalah *' . $otp . '*'." anda bisa melakukan aktivasi di stunting.sipakar.com/aktivasi/".$user->id_user;
         $pessan = new whatsappGateway;
         $pessan->index($user->no_hp, $pesan);
 
@@ -144,22 +144,24 @@ class RegisterController extends Controller
 
         $this->validate($request, [
             'aktivasi' => 'required'
+        ], [
+            'aktivasi.required' => 'Harap Masukkan Kode Aktivasi',
         ]);
 
         if ($request->aktivasi == $otps->aktivasi) {
             $user->update([
                 'status_users' => 'aktif'
             ]);
-            $pesan = "Selamat Akun Anda telah Aktif Silahkan login ke " . "sistem-pakar-stunting.com";
+            $pesan = "Selamat Akun Anda telah Aktif Silahkan login ke " . "stunting.sipakar.com";
             $pessan = new whatsappGateway;
             $pessan->index($user->no_hp, $pesan);
             $otps->update([
                 'status' => 'Sudah Aktif'
             ]);
             // $this->guard()->login($user);
-            return redirect()->route('home');
+            return redirect()->route('login');
         } else {
-            return back()->with('message', 'Otp yang anda masukkan salah.');
+            return back()->with('message', 'Kode Aktivasi Yang Anda Masukkan Salah');
         }
     }
 }

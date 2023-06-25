@@ -73,7 +73,7 @@ class PenggunaController extends Controller
     public function tambahdatabalita()
     {
         $balita = balita::all();
-        $ortu = User::where('role', 'pengguna')->get();
+        $ortu = User::where('role', 'pengguna')->where('idposyandu',Auth::user()->idposyandu)->get();
         return view('pengguna.tambahbalita', compact(['balita', 'ortu']));
     }
     public function insertdatabalita(Request $request)
@@ -86,6 +86,11 @@ class PenggunaController extends Controller
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'orang_tua' => 'required'
+        ],[
+            'nik.required'=>'Kolom Wajib Diisi',
+            'nama_balita.required'=>'Kolom Wajib Diisi',
+            'tempat_lahir.required'=>'Kolom Wajib Diisi',
+            'tanggal_lahir.required'=>'Kolom Wajib Diisi',
         ]);
 
         $ids = 'balita-' . Str::random(8);

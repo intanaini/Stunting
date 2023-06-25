@@ -71,7 +71,7 @@
                                 <div class="form-group">
                                     {{-- <input type="posyandu" class="form-control form-control-lg"
                                         value="{{ old('posyandu') }}" name="posyandu" placeholder="Posyandu"> --}}
-                                    <select name="posyandu" id="posyandu">
+                                    <select name="posyandu" id="posyandu" class="form-control form-control-lg">
                                         <option value=""> Pilih Posyandu</option>
                                         @foreach ($pos as $item)
                                             <option value="{{ $item->idposyandu }}">{{ $item->nama_posyandu }}</option>

@@ -20,11 +20,11 @@
                                             <option value="{{ $item->id_user }}">{{ $item->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('orang_tua')
+                                    {{-- @error('orang_tua')
                                         <span class="text-danger">
                                             <strong>{{ $message }}</strong>
                                         </span>
-                                    @enderror
+                                    @enderror --}}
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">NIK</label>
@@ -55,20 +55,18 @@
                                         <option value="laki-laki">Laki-Laki</option>
                                         <option value="perempuan">Perempuan</option>
                                     </select>
-                                    @error('jenis_kelamin')
+                                    {{-- @error('jenis_kelamin')
                                         <span class="text-danger">
                                             <strong>{{ $message }}</strong>
                                         </span>
-                                    @enderror
+                                    @enderror --}}
                                 </div>
-
-
 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tempat Lahir</label>
                                     <input type="text" value="{{ old('tempat_lahir') }}" class="form-control"
                                         id="tempat_lahir" name="tempat_lahir" placeholder="Tempat Lahir">
-                                    @error('tempat_badan')
+                                    @error('tempat_lahir')
                                         <span class="text-danger">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -78,7 +76,7 @@
                                     <label for="exampleInputEmail1">Tanggal Lahir</label>
                                     <input value="old('tanggal_lahir')" type="date" class="form-control"
                                         id="tanggal_lahir" name="tanggal_lahir" placeholder="Tanggal Lahir">
-                                    @error('tanggal_lahiran')
+                                    @error('tanggal_lahir')
                                         <span class="text-danger">
                                             <strong>{{ $message }}</strong>
                                         </span>

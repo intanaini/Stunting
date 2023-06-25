@@ -17,7 +17,7 @@ class CreatePosyandusTable extends Migration
             $table->string('idposyandu',8)->primary();
             $table->string('nama_posyandu',30);
             $table->string('alamat_posyandu',15);
-            $table->string('jadwal_posyandu',);
+            $table->string('jadwal_posyandu',20);
             $table->timestamps();
         });
     }

@@ -57,22 +57,13 @@ class SuperAdminController extends Controller
         return view('superadmin.datauser');
     }
     public function databalita(Request $request)
-    {   
-        $searchTerm = $request->input('q');
+    {
+
 
         $query = balita::query();
 
-        if ($searchTerm) {
-            $query->where('nama_balita', 'LIKE', "%$searchTerm%")
-                ->orWhere('jenis_kelamin', 'LIKE', "%$searchTerm%")
-                ->orWhere('tempat_lahir', 'LIKE', "%$searchTerm%")
-                ->orWhere('tanggal_lahir', 'LIKE', "%$searchTerm%")
-                ->orWhereHas('ortu.posyandu', function ($q) use ($searchTerm) {
-                    $q->where('nama_posyandu', 'LIKE', "%$searchTerm%");
-                });
-        }
 
-        $user = $query->paginate(30);
+        $user = balita::orderBy('nama_balita', 'ASC')->paginate(30);
 
         return view('superadmin.databalita', compact('user'));
     }
@@ -103,6 +94,11 @@ class SuperAdminController extends Controller
             'nama_posyandu' => 'required',
             'alamat_posyandu' => 'required',
             'jadwal_posyandu' => 'required',
+        ], [
+            'nama_posyandu.required' => 'Kolom Wajib Diisi',
+            'alamat_posyandu.required' => 'Kolom Wajib Diisi',
+            'jadwal_posyandu.required' => 'Kolom Wajib Diisi',
+
         ]);
         $ids = 'ps-' . Str::random(3);
         $request->merge(['password' => Hash::make($request->input('password'))]);

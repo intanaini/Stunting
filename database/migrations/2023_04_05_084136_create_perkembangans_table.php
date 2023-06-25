@@ -15,7 +15,7 @@ class CreatePerkembangansTable extends Migration
     {
         Schema::create('perkembangans', function (Blueprint $table) {
             $table->string('idperkembangan',25)->primary();
-            $table->string('idbalita');
+            $table->string('idbalita',20);
             $table->string('panjang_badan',5);
             $table->string('umur',5);
             $table->enum('status', ['masuk','tahap','keluar']);

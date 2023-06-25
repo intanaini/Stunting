@@ -84,10 +84,14 @@
                                     </span>
                                 @enderror
                 </div>
-                
-                <button type="submit" class="btn btn-primary me-2">Simpan</button>
-                <a href="{{ url()->previous() }}" class="btn btn-light">Kembali</a>
+                <div>
+                  <button type="submit" class="btn btn-primary me-2">Simpan</button>
+      
               </form>
+            
+                <a href="{{ url()->previous() }}" class="btn btn-light">Kembali</a>
+              </div>
+             
             </div>
           </div>
         </div>

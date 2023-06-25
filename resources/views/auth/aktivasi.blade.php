@@ -33,11 +33,6 @@
                                 <img src="/disk/images/logo.svg" alt="logo">
                             </div>
                             <h4>Sistem Pakar Stunting</h4>
-                            @if (session('error'))
-                                <div class="alert alert-danger">
-                                    {{ session('error') }}
-                                </div>
-                            @endif
                             <form class="pt-3" action="{{ route('kirimaktivasi') }}" method="post">
                                 @csrf
                                 <input type="hidden" value="{{ $user->id_user }}" name="id" id="id">
@@ -45,10 +40,15 @@
                                     <input type="aktivasi" class="form-control form-control-lg"
                                         value="{{ old('aktivasi') }}" name="aktivasi" placeholder="Kode Aktivasi">
                                     @error('aktivasi')
-                                        <span class="invalid-feedback" role="alert">
+                                        <span class="text-danger" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    @if (session('message'))
+                                    <div class="text-danger">
+                                        {{ session('message') }}
+                                    </div>
+                                @endif
                                 </div>
                                 <div class="mt-3">
                                     <button type="submit"

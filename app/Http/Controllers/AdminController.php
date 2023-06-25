@@ -85,6 +85,13 @@ class AdminController extends Controller
             'status_users' => 'required',
             'no_hp' => 'required',
             'id_posyandu' => 'required',
+        ],[ 'nik.required'=> 'Kolom Wajib Diisi',
+        'name.required'=> 'Kolom Wajib Diisi',
+        'role.required'=> 'Kolom Wajib Diisi',
+        'password.required'=> 'Kolom Wajib Diisi',
+        'status_users.required'=> 'Kolom Wajib Diisi',
+        'no_hp.required'=> 'Kolom Wajib Diisi',
+        'id_posyandu.required'=> 'Kolom Wajib Diisi',
         ]);
         $ids = $request->role . '-' . Str::random(8);
         $request->merge(['password' => Hash::make($request->input('password'))]);
@@ -159,7 +166,7 @@ class AdminController extends Controller
     public function datauser()
     {
         // $admin = User::where('role', 'pengguna')->paginate(10);
-        $user = User::where('role', 'pengguna')->paginate(10);
+        $user = User::where('role', 'pengguna')->where('idposyandu',Auth::user()->idposyandu)->paginate(10);
         return view('admin.datauser', compact('user'));
     }
     public function dataSuser()
@@ -187,6 +194,14 @@ class AdminController extends Controller
             'status_users' => 'required',
             'no_hp' => 'required',
             'id_posyandu' => 'required',
+        ],[ 'nik.required'=> 'Kolom Wajib Diisi',
+        'name.required'=> 'Kolom Wajib Diisi',
+        'role.required'=> 'Kolom Wajib Diisi',
+        'password.required'=> 'Kolom Wajib Diisi',
+        'status_users.required'=> 'Kolom Wajib Diisi',
+        'no_hp.required'=> 'Kolom Wajib Diisi',
+        'id_posyandu.required'=> 'Kolom Wajib Diisi',
+
         ]);
         $ids = $request->role . '-' . Str::random(8);
         $request->merge(['password' => Hash::make($request->input('password'))]);
@@ -364,6 +379,8 @@ class AdminController extends Controller
             'umur' => 'required',
             'panjang_badan' => 'required',
             'penyakit' => 'required',
+        ],[ 'umur.required'=> 'Kolom Wajib Diisi',
+            'panjang_badan.required'=> 'Kolom Wajib Diisi',
         ]);
         $ids = $request->role . '-' . Str::random(8);
         $request->merge(['password' => Hash::make($request->input('password'))]);
@@ -438,6 +455,9 @@ class AdminController extends Controller
             'judul' => 'required',
             'deskripsi' => 'required',
             'gambar' => 'required',
+        ],[
+            'judul.required'=>'Kolom Wajib Diisi',
+            'deskripsi.required'=>'Kolom Wajib Diisi',
         ]);
         $imageName = time() . '.' . $request->gambar->extension();
         $request->gambar->move(public_path('images'), $imageName);
@@ -553,6 +573,8 @@ class AdminController extends Controller
             'umur' => 'required',
             'panjang_badan' => 'required',
             'status' => 'required',
+        ],[
+            'panjang_badan.required'=>'Kolom Wajib Diisi'
         ]);
         $ids = 'perkembangan-' . Str::random(8);
         $request->merge(['password' => Hash::make($request->input('password'))]);
@@ -682,7 +704,7 @@ class AdminController extends Controller
                     'idbalita' => $balita->idbalita,
                     'hasil_diagnosa' => 'tidak stunting',
                 ]);
-                $pesan = "Anak anda  " . $balita->nama_balita . " Telah tidak *stunting*";
+                $pesan = "Balita anda  " . $balita->nama_balita . " Tidak Terdiagnosa *stunting*";
 
                 if (!is_null($cekbalita)) {
                     $cekbalita->update([
@@ -698,7 +720,7 @@ class AdminController extends Controller
                         'status' => 'keluar',
                         'tanggal' => Carbon::now(),
                     ]);
-                    $pesan = "Anak anda  " . $balita->nama_balita . " Telah keluar dari *stunting*";
+                    $pesan = "Selamat Balita anda  " . $balita->nama_balita . " Sudah Keluar Dari *stunting*". ' bisa di lihat di ' . 'stunting.sipakar.com/pengguna/hasildiagnosa/' . $data->idDiagnosa . '/' . $bulan . '/' . $request->panjang;
                 }
             } else {
                 if (!is_null($cekbalita)) {
@@ -722,7 +744,7 @@ class AdminController extends Controller
                         'status' => 'tahap',
                         'tanggal' => Carbon::now(),
                     ]);
-                    $pesan = "Anak anda  *" . $balita->nama_balita . "* Telah  *tahap*";
+                    $pesan = "Balita anda  *" . $balita->nama_balita . "* Masih Dalam *tahap* Stunting ". ' bisa di lihat di ' . 'stunting.sipakar.com/pengguna/hasildiagnosa/' . $data->idDiagnosa . '/' . $bulan . '/' . $request->panjang ;
                 } else {
 
                     $data = diagnosa::create([
@@ -749,7 +771,7 @@ class AdminController extends Controller
                         'tanggal' => Carbon::now(),
                     ]);
 
-                    $pesan = "Anak anda  *" . $balita->nama_balita . "* Telah *masuk*" . ' bisa di lihat di ' . 'sistem-pakar-stunting.com/pengguna/hasildiagnosa/' . $data->idDiagnosa . '/' . $bulan . '/' . $request->panjang;
+                    $pesan = "Balita anda  *" . $balita->nama_balita . "* Terdiagnosa *masuk* Stunting" . ' bisa di lihat di ' . 'stunting.sipakar.com/pengguna/hasildiagnosa/' . $data->idDiagnosa . '/' . $bulan . '/' . $request->panjang;
                 }
             }
 
@@ -782,7 +804,7 @@ class AdminController extends Controller
     }
     public function dataposyandu()
     {
-        $posyandu = posyandu::all()->sortBy('nama_posyandu');
+        $posyandu = posyandu::orderBy('nama_posyandu','ASC')->paginate(10);
         return view('admin.dataposyandu', compact(['posyandu']));
     }
     public function laporandiagnosa()

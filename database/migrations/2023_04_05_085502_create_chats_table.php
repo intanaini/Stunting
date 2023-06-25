@@ -15,8 +15,8 @@ class CreateChatsTable extends Migration
     {
         Schema::create('chats', function (Blueprint $table) {
             $table->string('idchat',20)->primary();
-            $table->string('idpengirim');
-            $table->string('idpenerima');
+            $table->string('idpengirim',20);
+            $table->string('idpenerima',20);
             $table->longText('isi_text');
             $table->string('pakar',8);
             $table->dateTime('tanggal');

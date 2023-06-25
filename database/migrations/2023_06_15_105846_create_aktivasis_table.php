@@ -14,8 +14,8 @@ class CreateAktivasisTable extends Migration
     public function up()
     {
         Schema::create('aktivasis', function (Blueprint $table) {
-            $table->id(10);
-            $table->string('id_user');
+            $table->id();
+            $table->string('id_user',20);
             $table->string('aktivasi',10);
             $table->string('status',30);
             $table->foreign('id_user')->references('id_user')->on('users')->onUpdate('cascade')->onDelete('cascade');

@@ -54,7 +54,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'hakakses:admin']], 
     Route::get('/deleteaturan/{id}', [AdminController::class, 'deletedataaturan'])->name('delete-aturan');
     // penyakit
     Route::get('/datapenyakit', [App\Http\Controllers\AdminController::class, 'datapenyakit'])->name('datapenyakit');
-    // metode
+    // 
     Route::get('/datainformasi', [App\Http\Controllers\AdminController::class, 'datainformasi'])->name('datainformasi');
     Route::get('/tambahinformasi', [AdminController::class, 'tambahdatainformasi'])->name('tambah-informasi');
     Route::post('/insertinformasi', [AdminController::class, 'insertdatainformasi'])->name('insert-informasi');
