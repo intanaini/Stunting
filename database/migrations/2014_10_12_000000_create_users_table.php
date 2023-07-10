@@ -14,12 +14,12 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->string('id_user')->primary();
-            $table->string('idposyandu')->nullable();
-            $table->string('name');
-            $table->string('nik')->unique();
-            $table->string('no_hp');
-            $table->string('password');
+            $table->string('id_user',20)->primary();
+            $table->string('idposyandu',8)->nullable();
+            $table->string('name',60);
+            $table->string('nik',18)->unique();
+            $table->string('no_hp',14);
+            $table->string('password',60);
             // $table->string('id_posyandu')->nullable();
             $table->enum('role', ['superadmin','admin','pakar','pengguna'])->default('pengguna');
             $table->enum('status_users', ['aktif','tidak aktif'])-> default('aktif');

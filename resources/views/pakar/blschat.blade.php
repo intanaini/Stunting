@@ -4,7 +4,7 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">BALITA</h4>
+            <h4 class="card-title">Chat Pengguna</h4>
             {{-- <a href="{{ route('tambah-user') }}" class="btn btn-primary btn-rounded btn-fw">Tambah Admin</a> --}}
             <div class="table-responsive">
               <table class="table table-striped">

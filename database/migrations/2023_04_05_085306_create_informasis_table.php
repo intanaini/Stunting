@@ -14,8 +14,8 @@ class CreateInformasisTable extends Migration
     public function up()
     {
         Schema::create('informasis', function (Blueprint $table) {
-            $table->string('idinformasi')->primary();
-            $table->string('judul');
+            $table->string('idinformasi',25)->primary();
+            $table->string('judul',50);
             $table->longText('deskripsi');
             $table->string('gambar')->nullable();
             $table->timestamps();

@@ -14,11 +14,11 @@ class CreateDiagnosasTable extends Migration
     public function up()
     {
         Schema::create('diagnosas', function (Blueprint $table) {
-            $table->string('idDiagnosa')->primary();
-            $table->string('idaturan')->nullable();
-            $table->string('idbalita')->nullable();
+            $table->string('idDiagnosa',25)->primary();
+            $table->string('idaturan',8)->nullable();
+            $table->string('idbalita',20)->nullable();
             $table->dateTime('tanggal')->nullable();
-            $table->string('hasil_diagnosa')->nullable();
+            $table->string('hasil_diagnosa',15)->nullable();
             $table->foreign('idaturan')->references('idaturan')->on('aturans')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('idbalita')->references('idbalita')->on('balitas')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

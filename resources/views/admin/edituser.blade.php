@@ -89,11 +89,14 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                </div>
-
-                                <button type="submit" class="btn btn-primary me-2">Simpan</button>
-                                <a href="{{ url()->previous() }}" class="btn btn-light">Kembali</a>
+                                    </div>
+                                <div>
+                                    <button type="submit" class="btn btn-primary me-2">Simpan</button>
+                                {{-- </div> --}}
                             </form>
+                            {{-- <div> --}}
+                                <a href="{{ url()->previous() }}" class="btn btn-light">Kembali</a>
+                            </div>
                         </div>
                     </div>
                 </div>

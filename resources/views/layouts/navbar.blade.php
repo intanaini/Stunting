@@ -16,6 +16,11 @@
       </div>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-top"> 
+      <ul class="navbar-nav">
+        <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
+          <h1 class="welcome-text mt-5"> <span class="text-black fw-bold">Hallo, Selamat Datang di Sistem Pakar Penentuan Balita Stunting!!!</span></h1>
+        </li>
+      </ul>
       <ul class="navbar-nav ms-auto">
         <li class="nav-item dropdown d-none d-lg-block">
           {{-- <a class="nav-link dropdown-bordered dropdown-toggle dropdown-toggle-split" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false"> Select Category </a>
@@ -102,67 +107,27 @@
             </a>
           </div>
         </li> --}}
-        {{-- <li class="nav-item dropdown"> 
-          <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="icon-bell"></i>
-            <span class="count"></span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="countDropdown">
-            <a class="dropdown-item py-3">
-              <p class="mb-0 font-weight-medium float-left">You have 7 unread mails </p>
-              <span class="badge badge-pill badge-primary float-right">View all</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item preview-item">
-              <div class="preview-thumbnail">
-                <img src="/disk/images/faces/face10.jpg" alt="image" class="img-sm profile-pic">
-              </div>
-              <div class="preview-item-content flex-grow py-2">
-                <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner </p>
-                <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-              </div>
-            </a>
-            <a class="dropdown-item preview-item">
-              <div class="preview-thumbnail">
-                <img src="/disk/images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
-              </div>
-              <div class="preview-item-content flex-grow py-2">
-                <p class="preview-subject ellipsis font-weight-medium text-dark">David Grey </p>
-                <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-              </div>
-            </a>
-            <a class="dropdown-item preview-item">
-              <div class="preview-thumbnail">
-                <img src="/disk/images/faces/face1.jpg" alt="image" class="img-sm profile-pic">
-              </div>
-              <div class="preview-item-content flex-grow py-2">
-                <p class="preview-subject ellipsis font-weight-medium text-dark">Travis Jenkins </p>
-                <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-              </div>
-            </a>
-          </div>
-        </li> --}}
-        <li class="nav-item dropdown d-none d-lg-block user-dropdown">
+        <li class="nav-item dropdown"> 
           <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
             <img class="img-xs rounded-circle" src="/images/profil.png" alt="Profile image"> </a>
-          <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-            <div class="dropdown-header text-center">
-              <img style="height: 40px" class="img-md rounded-circle" src="/images/profil.png" alt="Profile image">
-              <p class="mb-1 mt-3 font-weight-semibold">{{ Auth::user()->name }}</p>
-              <p class="fw-light text-muted mb-0">{{ Auth::user()->nik }}</p>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+              <div class="dropdown-header text-center">
+                <img style="height: 40px" class="img-md rounded-circle" src="/images/profil.png" alt="Profile image">
+                <p class="mb-1 mt-3 font-weight-semibold">{{ Auth::user()->name }}</p>
+                <p class="fw-light text-muted mb-0">{{ Auth::user()->nik }}</p>
+              </div>
+              <a href="{{ route('profil') }}" class="dropdown-item"> <i class="dropdown-item-icon mdi mdi-account-circle text-primary  me-2"></i> Profil</a>
+              <a class="dropdown-item" href="{{ route('logout') }}"
+                                         onclick="event.preventDefault();
+                                                       document.getElementById('logout-form').submit();">
+                                          <i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Keluar
+                                      </a>
+  
+                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                          @csrf
+                                      </form>
             </div>
-            <a href="{{ route('profil') }}" class="dropdown-item"> <i class="dropdown-item-icon mdi mdi-account-circle text-primary  me-2"></i> Profil</a>
-            <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        <i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-          </div>
-        </li>
+          </li>
       </ul>
       <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
         <span class="mdi mdi-menu"></span>

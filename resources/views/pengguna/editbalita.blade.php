@@ -15,7 +15,7 @@
                   <label for="exampleInputPassword1">Orang tua</label>
                   <select class="js-example-basic-single w-100" id="orang_tua" name="orang_tua">
                     @foreach ($ortu as $item)
-                    <option value="{{ $item->id_user }}">{{ $item->name }}</option>
+                    <option value="{{ $item->id_user }}" {{ $item->id_user == $balita->idortu ? 'selected' : '' }}>{{ $item->name }}</option>
                     @endforeach
                   </select>
                   @error('orang_tua')

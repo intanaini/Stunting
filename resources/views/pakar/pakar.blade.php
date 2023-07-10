@@ -4,7 +4,7 @@
 <div class="continer-fluid mt-3 mx-3">
     <div class="row mb-3">
         <div class="col-md-12">
-            <h2>Hallo, Selamat Datang di Sistem Pakar Penentuan Balita Stunting!!!</h2>
+            {{-- <h2>Hallo, Selamat Datang di Sistem Pakar Penentuan Balita Stunting!!!</h2> --}}
         </div>
     </div>
     <div class="row mb-3">

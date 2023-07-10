@@ -50,7 +50,7 @@
 
                     </td>
                     <td>
-                      {{ $item->posyandu->nama_posyandu }}
+                      {{ $item->posyandu->nama_posyandu ?? '' }}
                     </td>
                     {{-- <td>
                       <a href="{{ route('edit-admin',$item->id_user) }}" class="btn btn-primary btn-rounded btn-fw">Edit</a>
@@ -58,9 +58,9 @@
                     </td> --}}
                   </tr>
                   @endforeach
-                 
                 </tbody>
               </table>
+              {{ $admin->links('vendor.pagination.bootstrap-4') }}
             </div>
           </div>
         </div>

@@ -4,7 +4,11 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Tabel User</h4>
+                <h4 class="card-title">Tabel Balita</h4>
+                {{-- <form action="" method="GET"> --}}
+                    {{-- <input type="text" name="q" placeholder="Search...">
+                    <button type="submit">Search</button>
+                </form> --}}
                 {{-- <a href="{{ route('tambah-user') }}" class="btn btn-primary btn-rounded btn-fw">Tambah Admin</a> --}}
                 <div class="table-responsive">
                     <table class="table table-striped">
@@ -59,9 +63,9 @@
                                         {{ $item->ortu->posyandu->nama_posyandu }}
                                     </td>
                                     <td>
-                                        @if ($item->perkembagan > 0)
-                                            {{ $item->perkembangan[0]->status }}
-                                        @endif 
+                                        @if ($item->perkembangan->count() > 0)
+                                            {{ $item->perkembangan->first()->status }}
+                                        @endif
                                     </td>
                                     {{-- <td>
                       <a href="{{ route('edit-user',$item->id_user) }}" class="btn btn-primary btn-rounded btn-fw">Edit</a>
@@ -72,6 +76,7 @@
 
                         </tbody>
                     </table>
+                    {{ $user->links('vendor.pagination.bootstrap-4') }}
                 </div>
             </div>
         </div>

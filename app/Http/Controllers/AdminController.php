@@ -23,48 +23,51 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $data = User::where('idposyandu',Auth::user()->idposyandu)->pluck('id_user')->toArray();
-        $jb = balita::whereIn('idortu',$data)->count();
-        $jp = User::where('role','pengguna')->whereIn('id_user',$data)->count();
+        $data = User::where('idposyandu', Auth::user()->idposyandu)->pluck('id_user')->toArray();
+        $jb = balita::whereIn('idortu', $data)->count();
+        $jp = User::where('role', 'pengguna')->whereIn('id_user', $data)->count();
         // dd($jumlahbalita);
         // dd($data);
-        $balita =balita::whereIn('idortu',$data)->pluck('idbalita')->toArray();
-        $jd = diagnosa::whereIn('idbalita',$balita)->count();
+        $balita = balita::whereIn('idortu', $data)->pluck('idbalita')->toArray();
+        $jd = diagnosa::whereIn('idbalita', $balita)->count();
         // dd($balita);        // $ortu = 
 
         $dataStunting = [];
         $dataTDKStunting = [];
         $bulan = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
         foreach ($bulan as $key) {
-            $diagnosa = diagnosa::whereIn('idbalita',$balita)->where('hasil_diagnosa', 'stunting')->whereMonth('created_at', $key)->whereYear('created_at', date('Y'))->get();
+            $diagnosa = diagnosa::whereIn('idbalita', $balita)->where('hasil_diagnosa', 'stunting')->whereMonth('created_at', $key)->whereYear('created_at', date('Y'))->get();
             array_push($dataStunting, ($diagnosa->count() ?? 0));
         }
         foreach ($bulan as $key) {
-            $diagnosa = diagnosa::whereIn('idbalita',$balita)->where('hasil_diagnosa', 'tidak stunting')->whereMonth('created_at', $key)->whereYear('created_at', date('Y'))->get();
+            $diagnosa = diagnosa::whereIn('idbalita', $balita)->where('hasil_diagnosa', 'tidak stunting')->whereMonth('created_at', $key)->whereYear('created_at', date('Y'))->get();
             array_push($dataTDKStunting, ($diagnosa->count() ?? 0));
         }
 
         // ==========================================================
 
 
-        $totaldata =[];
-        $ts=diagnosa::whereIn('idbalita',$balita)->where('hasil_diagnosa', 'stunting')->get();
-        $tts=diagnosa::whereIn('idbalita',$balita)->where('hasil_diagnosa', 'tidak stunting')->get();
-        array_push($totaldata,$ts->count() ?? 0);
-        array_push($totaldata,$tts->count() ?? 0);
+        $totaldata = [];
+        $ts = diagnosa::whereIn('idbalita', $balita)->where('hasil_diagnosa', 'stunting')->get();
+        $tts = diagnosa::whereIn('idbalita', $balita)->where('hasil_diagnosa', 'tidak stunting')->get();
+        array_push($totaldata, $ts->count() ?? 0);
+        array_push($totaldata, $tts->count() ?? 0);
         // dd($dataStunting);
 
-        return view('admin.admin', compact(['data', 'dataStunting','dataTDKStunting','totaldata','jb','jp','jd']));
+        return view('admin.admin', compact(['data', 'dataStunting', 'dataTDKStunting', 'totaldata', 'jb', 'jp', 'jd']));
     }
     // admin
     public function dataadmin()
     {
-        $admin = User::where('role', 'admin')->get();
+        $admin = User::where('role', 'admin')->paginate(10);
+        // $query = User::query();
+        // $admin = User::where('role', 'admin')->get();
+        // $admin = $query->paginate(30);
         return view('admin.dataadmin', compact(['admin']));
     }
     public function datasadmin()
     {
-        $admin = User::whereIn('role', ['admin', 'superadmin'])->get();
+        $admin = User::whereIn('role', ['admin', 'superadmin'])->paginate(10);
         return view('superadmin.dataadmin', compact(['admin']));
     }
     public function tambahdataadmin()
@@ -82,6 +85,13 @@ class AdminController extends Controller
             'status_users' => 'required',
             'no_hp' => 'required',
             'id_posyandu' => 'required',
+        ],[ 'nik.required'=> 'Kolom Wajib Diisi',
+        'name.required'=> 'Kolom Wajib Diisi',
+        'role.required'=> 'Kolom Wajib Diisi',
+        'password.required'=> 'Kolom Wajib Diisi',
+        'status_users.required'=> 'Kolom Wajib Diisi',
+        'no_hp.required'=> 'Kolom Wajib Diisi',
+        'id_posyandu.required'=> 'Kolom Wajib Diisi',
         ]);
         $ids = $request->role . '-' . Str::random(8);
         $request->merge(['password' => Hash::make($request->input('password'))]);
@@ -155,13 +165,13 @@ class AdminController extends Controller
     // user
     public function datauser()
     {
-
-        $user = User::where('role', 'pengguna')->get();
+        // $admin = User::where('role', 'pengguna')->paginate(10);
+        $user = User::where('role', 'pengguna')->where('idposyandu',Auth::user()->idposyandu)->paginate(10);
         return view('admin.datauser', compact('user'));
     }
     public function dataSuser()
     {
-        $user = User::where('role', 'pengguna')->get();
+        $user = User::where('role', 'pengguna')->paginate(10);
         return view('superadmin.datauser', compact(['user']));
     }
     public function tambahdatauser()
@@ -184,6 +194,14 @@ class AdminController extends Controller
             'status_users' => 'required',
             'no_hp' => 'required',
             'id_posyandu' => 'required',
+        ],[ 'nik.required'=> 'Kolom Wajib Diisi',
+        'name.required'=> 'Kolom Wajib Diisi',
+        'role.required'=> 'Kolom Wajib Diisi',
+        'password.required'=> 'Kolom Wajib Diisi',
+        'status_users.required'=> 'Kolom Wajib Diisi',
+        'no_hp.required'=> 'Kolom Wajib Diisi',
+        'id_posyandu.required'=> 'Kolom Wajib Diisi',
+
         ]);
         $ids = $request->role . '-' . Str::random(8);
         $request->merge(['password' => Hash::make($request->input('password'))]);
@@ -337,14 +355,15 @@ class AdminController extends Controller
     // balita
     public function databalita()
     {
-        $balita = balita::all();
+        $data = User::where('idposyandu', Auth::user()->idposyandu)->pluck('id_user')->toArray();
+        $balita = balita::whereIn('idortu', $data)->get();
         return view('admin.databalita', compact(['balita']));
     }
 
     // aturan
     public function dataaturan()
     {
-        $aturan = aturan::all();
+        $aturan = aturan::paginate(10);
         return view('admin.dataaturan', compact('aturan'));
     }
     public function tambahdataaturan()
@@ -360,6 +379,8 @@ class AdminController extends Controller
             'umur' => 'required',
             'panjang_badan' => 'required',
             'penyakit' => 'required',
+        ],[ 'umur.required'=> 'Kolom Wajib Diisi',
+            'panjang_badan.required'=> 'Kolom Wajib Diisi',
         ]);
         $ids = $request->role . '-' . Str::random(8);
         $request->merge(['password' => Hash::make($request->input('password'))]);
@@ -434,6 +455,9 @@ class AdminController extends Controller
             'judul' => 'required',
             'deskripsi' => 'required',
             'gambar' => 'required',
+        ],[
+            'judul.required'=>'Kolom Wajib Diisi',
+            'deskripsi.required'=>'Kolom Wajib Diisi',
         ]);
         $imageName = time() . '.' . $request->gambar->extension();
         $request->gambar->move(public_path('images'), $imageName);
@@ -549,6 +573,8 @@ class AdminController extends Controller
             'umur' => 'required',
             'panjang_badan' => 'required',
             'status' => 'required',
+        ],[
+            'panjang_badan.required'=>'Kolom Wajib Diisi'
         ]);
         $ids = 'perkembangan-' . Str::random(8);
         $request->merge(['password' => Hash::make($request->input('password'))]);
@@ -623,11 +649,30 @@ class AdminController extends Controller
 
 
 
-    public function datadiagnosa()
+    public function datadiagnosa(Request $request)
     {
-        $balita = balita::all();
-        return view('admin.datadiagnosa', compact(['balita']));
+        if ($request->balita) {
+            # code...
+            $bal = balita::where('idbalita', $request->balita)->first();
+            $bulan = Carbon::parse($bal->tanggal_lahir)->diffInMonths();
+            if ($bulan == 0) {
+                $bulan = 1;
+            }
+            $jk = $bal->jenis_kelamin;
+            $idbalita = $request->balita;
+        } else {
+            $bulan = null;
+            $jk = null;
+            $idbalita = null;
+        }
+        $data = User::where('idposyandu', Auth::user()->idposyandu)->pluck('id_user')->toArray();
+
+        $balita = Balita::whereIn('idortu', $data)
+            ->whereRaw('DATEDIFF(NOW(), tanggal_lahir) < ?', [60 * 30])
+            ->get();
+        return view('admin.datadiagnosa', compact(['balita', 'bulan', 'jk', 'idbalita']));
     }
+
     public function tambahDiagnosa(Request $request)
     {
         $this->validate($request, [
@@ -638,10 +683,13 @@ class AdminController extends Controller
         $balita = balita::where('idbalita', $request->balita)->first();
         // dd(Carbon::parse($balita->tanggal_lahir)->diffInMonths());
         $bulan = Carbon::parse($balita->tanggal_lahir)->diffInMonths();
+
         if ($bulan == 0) {
             $bulan = 1;
         }
+
         $aturan = aturan::where('umur', $bulan)->where('jenis_kelamin', $balita->jenis_kelamin)->first();
+// mengambil aturan yang sama dengan umur (bulan) dan jenis kelamin balita => 4 kenapa first? 
         $idD =  str_replace([' ', "'"], '-', strtolower('diagnosa-' . CarbonImmutable::now()->timestamp . Str::random(3)));
         $ids = 'perkembangan-' . Str::random(8);
         $idsa = 'detail-perkembangan-' . Str::random(8);
@@ -660,6 +708,8 @@ class AdminController extends Controller
                     'idbalita' => $balita->idbalita,
                     'hasil_diagnosa' => 'tidak stunting',
                 ]);
+                $pesan = "Selamat Balita " . $balita->nama_balita . " Tidak Terdiagnosa *stunting*";
+
                 if (!is_null($cekbalita)) {
                     $cekbalita->update([
                         'panjang_badan' => $request->panjang,
@@ -674,6 +724,7 @@ class AdminController extends Controller
                         'status' => 'keluar',
                         'tanggal' => Carbon::now(),
                     ]);
+                    $pesan = "Selamat Balita " . $balita->nama_balita . " Sudah Keluar dari masa *stunting*". ' bisa di lihat di ' . 'stunting.sipakar.com/pengguna/hasildiagnosa/' . $data->idDiagnosa . '/' . $bulan . '/' . $request->panjang;
                 }
             } else {
                 if (!is_null($cekbalita)) {
@@ -697,6 +748,7 @@ class AdminController extends Controller
                         'status' => 'tahap',
                         'tanggal' => Carbon::now(),
                     ]);
+                    $pesan = "Balita *" . $balita->nama_balita . "* Masih Dalam *Fase* Stunting ". ' bisa di lihat di ' . 'stunting.sipakar.com/pengguna/hasildiagnosa/' . $data->idDiagnosa . '/' . $bulan . '/' . $request->panjang ;
                 } else {
 
                     $data = diagnosa::create([
@@ -722,12 +774,16 @@ class AdminController extends Controller
                         'status' => 'masuk',
                         'tanggal' => Carbon::now(),
                     ]);
+
+                    $pesan = "Balita *" . $balita->nama_balita . "* Terdiagnosa Stunting" . ' bisa di lihat di ' . 'stunting.sipakar.com/pengguna/hasildiagnosa/' . $data->idDiagnosa . '/' . $bulan . '/' . $request->panjang;
                 }
             }
 
             // dd($data->idDiagnosa);
+            $pessan = new whatsappGateway;
+            $pessan->index($balita->ortu->no_hp, $pesan);
 
-            return redirect()->route('hasildiagnosa', [$data->idDiagnosa, $bulan, $request->panjang]);
+            return redirect()->route('hasildiagnosa-admin', [$data->idDiagnosa, $bulan, $request->panjang]);
         }
     }
 
@@ -739,7 +795,9 @@ class AdminController extends Controller
         $data = diagnosa::where('idDiagnosa', $id)->first();
         $umur1 = $umur;
         $panjang1 = $panjang;
-        return view('admin.hasildiagnosaS', compact(['data', 'umur1', 'panjang1']));
+        $viewper = perkembangan::where('idbalita', $data->idbalita)->latest()->first();
+        $balita = balita::where('idbalita', $data->idbalita)->first();
+        return view('admin.hasildiagnosaS', compact(['data', 'umur1', 'panjang1', 'viewper', 'balita']));
     }
     public function hasildiagnosaS($umur, $panjang)
     {
@@ -750,27 +808,27 @@ class AdminController extends Controller
     }
     public function dataposyandu()
     {
-        $posyandu = posyandu::all()->sortBy('nama_posyandu');
+        $posyandu = posyandu::orderBy('nama_posyandu','ASC')->paginate(10);
         return view('admin.dataposyandu', compact(['posyandu']));
     }
     public function laporandiagnosa()
     {
-         $diagnosa = diagnosa::all();
-        return view('admin.laporandiagnosa',compact(['diagnosa']));
+        $diagnosa = diagnosa::all();
+        return view('admin.laporandiagnosa', compact(['diagnosa']));
     }
     public function laporanperkembangan()
     {
         $perkembangan = perkembangan::all();
-        return view('admin.laporanperkembangan',compact(['perkembangan']));
+        return view('admin.laporanperkembangan', compact(['perkembangan']));
     }
     public function cetaklaporanD()
     {
         $diagnosa = diagnosa::all();
-        return view('admin.cetaklaporanD',compact(['diagnosa']));
+        return view('admin.cetaklaporanD', compact(['diagnosa']));
     }
     public function cetaklaporanP()
     {
         $perkembangan = perkembangan::all();
-        return view('admin.cetaklaporanP',compact(['perkembangan']));
+        return view('admin.cetaklaporanP', compact(['perkembangan']));
     }
 }
