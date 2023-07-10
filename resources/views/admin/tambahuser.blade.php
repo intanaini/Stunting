@@ -23,7 +23,7 @@
                   <label for="exampleInputEmail1">Nama</label>
                   <input type="text" class="form-control" id="name" name="name" placeholder="Nama">
                   @error('name')
-                                    <span class="text-danger" >
+                                    <span class="text-danger">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror

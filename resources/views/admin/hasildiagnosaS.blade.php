@@ -4,22 +4,41 @@
     <div class="card">
         <div class="card-body mt-5">
             <div class="row">
-                <div class="col-6"><img src="{{ asset('disk/images/stunting.png') }}" alt="" class="w-100"></div>
+                @if (!is_null($data))
+                    @if ($data->hasil_diagnosa == 'stunting')
+                        <div class="col-6"><img src="{{ asset('disk/images/tidakstunting.png') }}" alt=""
+                                class="w-100">
+                        </div>
+                    @elseif ($data->hasil_diagnosa == 'tidak stunting')
+                        <div class="col-6"><img src="{{ asset('disk/images/stunting.png') }}" alt="" width="590">
+                        </div>
+                    @endif
+                @else
+                    <div class="col-6"><img src="{{ asset('disk/images/stunting.png') }}" alt="" width="590">
+                    </div>
+                @endif
                 <div class="col-6">
                     {{-- @json($data)
                 @json($data)
                 @json($data) --}}
                     @if (!is_null($data))
                         @if ($data->hasil_diagnosa == 'stunting')
-                            <h3><strong class=" text-capitalize">Balita {{ $balita->nama_balita }} Terdiagnosa
-                                    Stunting</strong></h3><br>
-                            <h4> Berjenis Kelamin <span class=" text-capitalize"> {{ $balita->jenis_kelamin }} </span> Karena
+                            <h3>
+                                <strong>Balita <span class=" text-capitalize"> {{ $balita->nama_balita }} </span></strong>
+                                <span style="color:red">"Terdiagnosa Stunting"</span>
+                            </h3><br>
+                            {{-- <h3><strong class=" text-capitalize">Balita {{ $balita->nama_balita }}  --}}
+                            {{-- </strong></h3> <h3 style="color:red">Terdiagnosa Stunting</h3><br> --}}
+                            <h4> Berjenis Kelamin <span class=" text-capitalize"> {{ $balita->jenis_kelamin }} </span>
+                                Karena
                                 balita anda memiliki panjang <strong> {{ $panjang1 }} </strong> yang tidak sesuai
                                 dengan Umur <strong> {{ $umur1 }} </strong> Berdasarkan aturan Buku KIA pada
                                 Permenkes no. 2 tahun 2020 Tentang Standar Antropometri.</h4>
                         @elseif ($data->hasil_diagnosa == 'tidak stunting')
-                            <h3><strong>Balita <span class=" text-capitalize"> {{ $balita->nama_balita }} </span> Tidak
-                                    Terdiagnosa Stunting</strong></h3><br>
+                            <h3>
+                                <strong>Balita <span class=" text-capitalize"> {{ $balita->nama_balita }} </span></strong>
+                                <span style="color:rgb(4, 175, 61)">"Tidak Terdiagnosa Stunting"</span>
+                            </h3><br>
                         @endif
                     @else
                         <h2><strong>Balita Anda Memiliki Usia Lebih dari 60 Bulan</strong></h2><br>

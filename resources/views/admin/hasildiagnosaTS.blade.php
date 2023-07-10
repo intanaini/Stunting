@@ -4,9 +4,9 @@
 <div class="card">
     <div class="card-body mt-5">
         <div class="row">
-            <div class="col-6"><img src="{{ asset('disk/images/stunting.png') }}" alt="" width="590"></div>
+            <div class="col-6"><img src="{{ asset('disk/images/tidakstunting.png') }}" alt="" width="590"></div>
             <div class="col-6">
-                <h2><strong>Balita Anda Tidak Terdiagnosa Stunting</strong></h2><br>
+                <h2><strong>Balita Anda</strong> <span style="color:red">"Tidak Terdiagnosa Stunting"</span></h2>
                 <br><h4>Upaya Pencegahan Stunting</h4>
                 <h6>1. Ibu hamil mendapat Tablet Tambah Darah minimal 90 tablet</h6>
                 <h6>2. Pemberian Makanan Tambahan ibu hamil</h6>

@@ -672,6 +672,7 @@ class AdminController extends Controller
             ->get();
         return view('admin.datadiagnosa', compact(['balita', 'bulan', 'jk', 'idbalita']));
     }
+
     public function tambahDiagnosa(Request $request)
     {
         $this->validate($request, [
@@ -682,10 +683,13 @@ class AdminController extends Controller
         $balita = balita::where('idbalita', $request->balita)->first();
         // dd(Carbon::parse($balita->tanggal_lahir)->diffInMonths());
         $bulan = Carbon::parse($balita->tanggal_lahir)->diffInMonths();
+
         if ($bulan == 0) {
             $bulan = 1;
         }
+
         $aturan = aturan::where('umur', $bulan)->where('jenis_kelamin', $balita->jenis_kelamin)->first();
+// mengambil aturan yang sama dengan umur (bulan) dan jenis kelamin balita => 4 kenapa first? 
         $idD =  str_replace([' ', "'"], '-', strtolower('diagnosa-' . CarbonImmutable::now()->timestamp . Str::random(3)));
         $ids = 'perkembangan-' . Str::random(8);
         $idsa = 'detail-perkembangan-' . Str::random(8);
@@ -704,7 +708,7 @@ class AdminController extends Controller
                     'idbalita' => $balita->idbalita,
                     'hasil_diagnosa' => 'tidak stunting',
                 ]);
-                $pesan = "Balita anda  " . $balita->nama_balita . " Tidak Terdiagnosa *stunting*";
+                $pesan = "Selamat Balita " . $balita->nama_balita . " Tidak Terdiagnosa *stunting*";
 
                 if (!is_null($cekbalita)) {
                     $cekbalita->update([
@@ -720,7 +724,7 @@ class AdminController extends Controller
                         'status' => 'keluar',
                         'tanggal' => Carbon::now(),
                     ]);
-                    $pesan = "Selamat Balita anda  " . $balita->nama_balita . " Sudah Keluar Dari *stunting*". ' bisa di lihat di ' . 'stunting.sipakar.com/pengguna/hasildiagnosa/' . $data->idDiagnosa . '/' . $bulan . '/' . $request->panjang;
+                    $pesan = "Selamat Balita " . $balita->nama_balita . " Sudah Keluar dari masa *stunting*". ' bisa di lihat di ' . 'stunting.sipakar.com/pengguna/hasildiagnosa/' . $data->idDiagnosa . '/' . $bulan . '/' . $request->panjang;
                 }
             } else {
                 if (!is_null($cekbalita)) {
@@ -744,7 +748,7 @@ class AdminController extends Controller
                         'status' => 'tahap',
                         'tanggal' => Carbon::now(),
                     ]);
-                    $pesan = "Balita anda  *" . $balita->nama_balita . "* Masih Dalam *tahap* Stunting ". ' bisa di lihat di ' . 'stunting.sipakar.com/pengguna/hasildiagnosa/' . $data->idDiagnosa . '/' . $bulan . '/' . $request->panjang ;
+                    $pesan = "Balita *" . $balita->nama_balita . "* Masih Dalam *Fase* Stunting ". ' bisa di lihat di ' . 'stunting.sipakar.com/pengguna/hasildiagnosa/' . $data->idDiagnosa . '/' . $bulan . '/' . $request->panjang ;
                 } else {
 
                     $data = diagnosa::create([
@@ -771,7 +775,7 @@ class AdminController extends Controller
                         'tanggal' => Carbon::now(),
                     ]);
 
-                    $pesan = "Balita anda  *" . $balita->nama_balita . "* Terdiagnosa *masuk* Stunting" . ' bisa di lihat di ' . 'stunting.sipakar.com/pengguna/hasildiagnosa/' . $data->idDiagnosa . '/' . $bulan . '/' . $request->panjang;
+                    $pesan = "Balita *" . $balita->nama_balita . "* Terdiagnosa Stunting" . ' bisa di lihat di ' . 'stunting.sipakar.com/pengguna/hasildiagnosa/' . $data->idDiagnosa . '/' . $bulan . '/' . $request->panjang;
                 }
             }
 

@@ -160,8 +160,8 @@ Route::group(['middleware' => ['auth', 'hakakses:admin,pengguna']], function () 
 // Route::get('/hasilS', function () {
 //     return view('admin.hasildiagnosaS');
 // });
-// Route::get('/hasilTS', function () {
-//     return view('admin.hasildiagnosaTS');
-// });
+ Route::get('/hasilTS', function () {
+   return view('admin.hasildiagnosaTS');
+ });
 Route::get('/aktivasi/{id}', [RegisterController::class, 'aktivasi'])->name('aktivasi');
 Route::post('/kirimaktivasi', [RegisterController::class, 'kirimaktivasi'])->name('kirimaktivasi');
